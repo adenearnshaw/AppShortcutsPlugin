@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj" />
+  </ItemGroup>
+  <Import Project="..\Plugin.AppShortcuts.Shared\Plugin.AppShortcuts.Shared.projitems" Label="Shared" Condition="Exists('..\Plugin.AppShortcuts.Shared\Plugin.AppShortcuts.Shared.projitems')" />
+</Project>

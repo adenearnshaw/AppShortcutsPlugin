@@ -1,0 +1,37 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.AppShortcuts", "Plugin.AppShortcuts\Plugin.AppShortcuts.csproj", "{2C85920D-B430-4BBD-9C16-63DD93E6EA74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.AppShortcuts.Abstractions", "Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj", "{4AAC8713-F344-4AA2-9206-A317F3EA43E2}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Plugin.AppShortcuts.Shared", "Plugin.AppShortcuts.Shared\Plugin.AppShortcuts.Shared.shproj", "{60966676-7A18-4295-96E7-92295F8A61E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.AppShortcuts.Android", "Plugin.AppShortcuts.Android\Plugin.AppShortcuts.Android.csproj", "{51E4DB26-7D3B-4666-897C-FB58C89F084F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.AppShortcuts.iOS", "Plugin.AppShortcuts.iOS\Plugin.AppShortcuts.iOS.csproj", "{0B287578-A6D1-4ECC-9DA9-B5C85FC01EB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C85920D-B430-4BBD-9C16-63DD93E6EA74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C85920D-B430-4BBD-9C16-63DD93E6EA74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C85920D-B430-4BBD-9C16-63DD93E6EA74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C85920D-B430-4BBD-9C16-63DD93E6EA74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AAC8713-F344-4AA2-9206-A317F3EA43E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AAC8713-F344-4AA2-9206-A317F3EA43E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AAC8713-F344-4AA2-9206-A317F3EA43E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AAC8713-F344-4AA2-9206-A317F3EA43E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51E4DB26-7D3B-4666-897C-FB58C89F084F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E4DB26-7D3B-4666-897C-FB58C89F084F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E4DB26-7D3B-4666-897C-FB58C89F084F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E4DB26-7D3B-4666-897C-FB58C89F084F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B287578-A6D1-4ECC-9DA9-B5C85FC01EB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B287578-A6D1-4ECC-9DA9-B5C85FC01EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B287578-A6D1-4ECC-9DA9-B5C85FC01EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B287578-A6D1-4ECC-9DA9-B5C85FC01EB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
