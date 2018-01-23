@@ -47,13 +47,13 @@
   </metadata>
   <files>
     <!--Core-->
-    <file src="src\Plugin.AppShortcuts\bin\Release\netstandard1.0\Plugin.AppShortcuts.*" target="lib\netstandard1.0" />
+    <file src="..\src\Plugin.AppShortcuts\bin\Release\netstandard1.0\Plugin.AppShortcuts.*" target="lib\netstandard1.0" />
 
     <!--Xamarin.Android-->
-    <file src="src\Plugin.AppShortcuts.Android\bin\Release\Plugin.AppShortcuts.*" target="lib\MonoAndroid10" />
+    <file src="..\src\Plugin.AppShortcuts.Android\bin\Release\Plugin.AppShortcuts.*" target="lib\MonoAndroid10" />
 
     <!--Xamarin.iOS Unified-->
-    <file src="src\Plugin.AppShortcuts.iOS\bin\iPhone\Release\Plugin.AppShortcuts.*" target="lib\Xamarin.iOS10" />
+    <file src="..\src\Plugin.AppShortcuts.iOS\bin\Release\Plugin.AppShortcuts.*" target="lib\Xamarin.iOS10" />
 
   </files>
 </package>
