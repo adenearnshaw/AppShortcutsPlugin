@@ -1,11 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:AppShortcutsTests"
-             x:Class="AppShortcutsTests.MainPage">
-
-	<Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
-
+             x:Class="AppShortcutsTests.MainPage"
+             Title="AppShortcuts Plugin Tests">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Add" Order="Primary" Clicked=""/>
+    </ContentPage.ToolbarItems>
+    
+	<ListView x:Name="ShortcutsListView" 
+              IsPullToRefreshEnabled="true">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding Label}" Detail="{Binding Uri}">
+                    <TextCell.ContextActions>
+                        <MenuItem Text="Delete" Clicked="DeleteShortcut" CommandParameter="{Binding .}" />
+                    </TextCell.ContextActions>
+                </TextCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

@@ -1,34 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace AppShortcutsTests
 {
-	public partial class App : Application
-	{
-		public App ()
-		{
-			InitializeComponent();
+    public partial class App : Application
+    {
+        public static string DeepLinkMessageName => "DeepLink";
 
-			MainPage = new AppShortcutsTests.MainPage();
-		}
+        public App()
+        {
+            InitializeComponent();
+            MainPage = new NavigationPage(new MainPage());
+        }
 
-		protected override void OnStart ()
-		{
-			// Handle when your app starts
-		}
+        protected override void OnAppLinkRequestReceived(System.Uri uri)
+        {
+            MessagingCenter.Send<App, string>(this, DeepLinkMessageName, uri.ToString());
 
-		protected override void OnSleep ()
-		{
-			// Handle when your app sleeps
-		}
-
-		protected override void OnResume ()
-		{
-			// Handle when your app resumes
-		}
-	}
+            base.OnAppLinkRequestReceived(uri);
+        }
+    }
 }
