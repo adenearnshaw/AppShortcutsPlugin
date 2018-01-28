@@ -2,13 +2,13 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
     <id>Plugin.AppShortcuts</id>
-    <version>0.0.1-alpha1</version>
+    <version>0.0.1-alpha3</version>
     <title>Manage App Shortcuts for Xamarin</title>
     <authors>Aden Earnshaw</authors>
     <owners>Aden Earnshaw</owners>
     <licenseUrl>https://github.com/adenearnshaw/AppShortcutsPlugin/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/adenearnshaw/AppShortcutsPlugin</projectUrl>
-    <iconUrl>https://github.com/adenearnshaw/AppShortcutsPlugin/blob/master/art/appshortcuts_icon.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/adenearnshaw/AppShortcutsPlugin/master/art/appshortcuts_icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
       Dynamically add and remove shortcuts to your app's icon so the user can deep-link into your app.
@@ -16,33 +16,34 @@
     <summary>Manage dynamic app shortcuts from shared code.</summary>
     <tags>xamarin, pcl, xam.pcl, maps, navigation, external maps, windows phone, winphone, wp8, winrt, android, xamarin.forms, ios</tags>
     <dependencies>
-      <group targetFramework="net">
-      </group>
-      <group targetFramework="win">
-      </group>
-      <group targetFramework="wp">
-      </group>
-      <group targetFramework="wpa">
-      </group>
+      <!-- <group targetFramework="net">
+      </group> -->
+      <!-- <group targetFramework="win">
+      </group> -->
+      <!-- <group targetFramework="wp">
+      </group> -->
+      <!-- <group targetFramework="wpa">
+      </group> -->
       <group targetFramework="netstandard1.0">
         <dependency id="NETStandard.Library" version="1.6.1" />
       </group>
-      <group targetFramework="MonoAndroid10">
+      <group targetFramework="MonoAndroid80">
+        <dependency id="Plugin.CurrentActivity" version="1.0.1" />
       </group>
       <group targetFramework="Xamarin.iOS10">
       </group>
-      <group targetFramework="Xamarin.Mac20">
-      </group>
-      <group targetFramework="portable-net45+win+wpa81+wp80">
-      </group>
-      <group targetFramework="uap">
-      </group>
+      <!-- <group targetFramework="Xamarin.Mac20">
+      </group> -->
+      <!-- <group targetFramework="portable-net45+win+wpa81+wp80">
+      </group> -->
+      <!-- <group targetFramework="uap">
+      </group> -->
       <group targetFramework="dotnet">
       </group>
-      <group targetFramework="xamarintvos">
-      </group>
-      <group targetFramework="xamarinwatchos">
-      </group>
+      <!-- <group targetFramework="xamarintvos">
+      </group> -->
+      <!-- <group targetFramework="xamarinwatchos">
+      </group> -->
     </dependencies>
   </metadata>
   <files>

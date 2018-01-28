@@ -59,9 +59,8 @@ namespace Plugin.AppShortcuts
                     return new List<Shortcut>();
 
                 var dynamicShortcuts = _manager.DynamicShortcuts;
-                var shortcuts = dynamicShortcuts.Select(s => new Shortcut
+                var shortcuts = dynamicShortcuts.Select(s => new Shortcut(Guid.Parse(s.Id))
                 {
-                    ID = Guid.Parse(s.Id),
                     Label = s.ShortLabel,
                     Description = s.LongLabel,
                     Uri = s.Intent.ToUri(IntentUriType.AllowUnsafe)
