@@ -40,7 +40,7 @@ namespace AppShortcutsTests
             base.OnDisappearing();
         }
 
-        public async void AddNewShortcut()
+        public async void AddNewShortcut(object sender, EventArgs args)
         {
             var shortcut = new Shortcut
             {
