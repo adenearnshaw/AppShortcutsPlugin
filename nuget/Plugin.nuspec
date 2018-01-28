@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
     <id>Plugin.AppShortcuts</id>
-    <version>0.0.1-alpha4</version>
+    <version>0.0.1-alpha5</version>
     <title>Manage App Shortcuts for Xamarin</title>
     <authors>Aden Earnshaw</authors>
     <owners>Aden Earnshaw</owners>
@@ -48,13 +48,13 @@
   </metadata>
   <files>
     <!--Core-->
-    <file src="..\src\Plugin.AppShortcuts\bin\Release\netstandard1.0\*.dll" target="lib\netstandard1.0" />
+    <file src="..\src\Plugin.AppShortcuts\bin\Release\netstandard1.0\Plugin.AppShortcuts*.dll" target="lib\netstandard1.0" />
 
     <!--Xamarin.Android-->
-    <file src="..\src\Plugin.AppShortcuts.Android\bin\Release\*.dll" target="lib\MonoAndroid10" />
+    <file src="..\src\Plugin.AppShortcuts.Android\bin\Release\Plugin.AppShortcuts*.dll" target="lib\MonoAndroid10" />
 
     <!--Xamarin.iOS Unified-->
-    <file src="..\src\Plugin.AppShortcuts.iOS\bin\Release\*.dll" target="lib\Xamarin.iOS10" />
+    <file src="..\src\Plugin.AppShortcuts.iOS\bin\Release\Plugin.AppShortcuts*.dll" target="lib\Xamarin.iOS10" />
 
   </files>
 </package>
