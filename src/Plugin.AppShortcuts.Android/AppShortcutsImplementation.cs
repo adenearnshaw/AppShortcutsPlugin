@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Plugin.AppShortcuts.Abstractions;
-using Plugin.CurrentActivity;
 using AUri = Android.Net.Uri;
 
 namespace Plugin.AppShortcuts
@@ -18,8 +18,7 @@ namespace Plugin.AppShortcuts
 
         public AppShortcutsImplementation()
         {
-            var context = CrossCurrentActivity.Current.Activity;
-            _manager = (ShortcutManager)context.GetSystemService(Context.ShortcutService);
+            _manager = (ShortcutManager)Application.Context.GetSystemService(Context.ShortcutService);
 
             _isShortcutsSupported = Build.VERSION.SdkInt >= BuildVersionCodes.N;
         }
@@ -33,7 +32,7 @@ namespace Plugin.AppShortcuts
                 if (!_isShortcutsSupported)
                     return;
 
-                var context = CrossCurrentActivity.Current.Activity;
+                var context = Application.Context;
                 var builder = new ShortcutInfo.Builder(context, shortcut.ID.ToString());
 
                 var uri = AUri.Parse(shortcut.Uri);

@@ -1,9 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.AppShortcuts", "Plugin.AppShortcuts\Plugin.AppShortcuts.csproj", "{2C85920D-B430-4BBD-9C16-63DD93E6EA74}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.AppShortcuts", "Plugin.AppShortcuts\Plugin.AppShortcuts.csproj", "{2C85920D-B430-4BBD-9C16-63DD93E6EA74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.AppShortcuts.Abstractions", "Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj", "{4AAC8713-F344-4AA2-9206-A317F3EA43E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.AppShortcuts.Abstractions", "Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj", "{4AAC8713-F344-4AA2-9206-A317F3EA43E2}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Plugin.AppShortcuts.Shared", "Plugin.AppShortcuts.Shared\Plugin.AppShortcuts.Shared.shproj", "{60966676-7A18-4295-96E7-92295F8A61E6}"
 EndProject
@@ -12,6 +13,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.AppShortcuts.iOS", "Plugin.AppShortcuts.iOS\Plugin.AppShortcuts.iOS.csproj", "{0B287578-A6D1-4ECC-9DA9-B5C85FC01EB8}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Plugin.AppShortcuts.Shared\Plugin.AppShortcuts.Shared.projitems*{0b287578-a6d1-4ecc-9da9-b5c85fc01eb8}*SharedItemsImports = 4
+		Plugin.AppShortcuts.Shared\Plugin.AppShortcuts.Shared.projitems*{51e4db26-7d3b-4666-897c-fb58c89f084f}*SharedItemsImports = 4
+		Plugin.AppShortcuts.Shared\Plugin.AppShortcuts.Shared.projitems*{60966676-7a18-4295-96e7-92295f8a61e6}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -33,5 +39,11 @@ Global
 		{0B287578-A6D1-4ECC-9DA9-B5C85FC01EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B287578-A6D1-4ECC-9DA9-B5C85FC01EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B287578-A6D1-4ECC-9DA9-B5C85FC01EB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E54E2F67-EC29-4A0E-98C3-940AEA387BC5}
 	EndGlobalSection
 EndGlobal
