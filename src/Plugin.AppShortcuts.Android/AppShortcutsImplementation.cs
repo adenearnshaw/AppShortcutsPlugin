@@ -44,9 +44,9 @@ namespace Plugin.AppShortcuts
                 var scut = builder.Build();
 
                 if (_manager.DynamicShortcuts == null || !_manager.DynamicShortcuts.Any())
-                    _manager.AddDynamicShortcuts(new List<ShortcutInfo> { scut });
+                    _manager.SetDynamicShortcuts(new List<ShortcutInfo> { scut });
                 else
-                    _manager.DynamicShortcuts.Add(scut);
+                    _manager.AddDynamicShortcuts(new List<ShortcutInfo> { scut });
             });
         }
 
