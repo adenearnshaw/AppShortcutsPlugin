@@ -5,10 +5,10 @@
              x:Class="AppShortcutsTests.MainPage"
              Title="AppShortcuts Plugin Tests">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Add" Order="Primary" Clicked=""/>
+        <ToolbarItem Text="Add" Order="Primary" Clicked="AddNewShortcut"/>
     </ContentPage.ToolbarItems>
     
-	<ListView x:Name="ShortcutsListView" 
+    <ListView x:Name="ShortcutsListView" 
               IsPullToRefreshEnabled="true">
         <ListView.ItemTemplate>
             <DataTemplate>
