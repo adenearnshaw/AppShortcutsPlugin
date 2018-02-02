@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
 using Plugin.AppShortcuts.Abstractions;
@@ -11,31 +12,31 @@ namespace Plugin.AppShortcuts
     {
         private const string SHORTCUT_URI_KEY = "ShortcutUri";
 
-        private readonly NSString ApplicationShortcutUserInfoIconKey = (NSString)"applicationShortcutUserInfoIconKey";
-        private readonly bool _isShortcutsSupported;
-
         public AppShortcutsImplementation()
         {
-            _isShortcutsSupported = UIDevice.CurrentDevice.CheckSystemVersion(9, 0);
+            IsSupportedByCurrentPlatformVersion = UIDevice.CurrentDevice.CheckSystemVersion(9, 0);
         }
 
-        public bool IsSupportedByCurrentPlatformVersion => _isShortcutsSupported;
+        public bool IsSupportedByCurrentPlatformVersion { get; }
 
         public Task AddShortcut(Shortcut shortcut)
         {
             return Task.Run(() =>
             {
-                string type = ShortcutIdentifierType.Third.GetTypeName();
-                var icon = CreateIcon(UIApplicationShortcutIconType.Date);
-                var userInfo = CreateUserInfo(UIApplicationShortcutIconType.Play);
+                var type = shortcut.ID.ToString();
+                var icon = CreateIcon(shortcut.Icon);
+                var userInfo = CreateUserInfo(shortcut.Uri);
 
                 var scut = new UIMutableApplicationShortcutItem(type,
                                                                 shortcut.Label,
                                                                 shortcut.Description,
                                                                 icon,
                                                                 userInfo);
-                scut.UserInfo = new NSDictionary<NSString, NSObject>(new NSString(SHORTCUT_URI_KEY), new NSString(shortcut.Uri));
-                UIApplication.SharedApplication.ShortcutItems = new[] { scut };
+
+                if (UIApplication.SharedApplication.ShortcutItems == null)
+                    UIApplication.SharedApplication.ShortcutItems = new UIApplicationShortcutItem[0];
+
+                UIApplication.SharedApplication.ShortcutItems.Append(scut);
             });
         }
 
@@ -43,8 +44,15 @@ namespace Plugin.AppShortcuts
         {
             return Task.Run(() =>
             {
-                //TODO
-                return new List<Shortcut>();
+                var dynamicShortcuts = UIApplication.SharedApplication.ShortcutItems ?? new UIApplicationShortcutItem[0];
+                var shortcuts = dynamicShortcuts.Select(ds => new Shortcut
+                {
+                    Label = ds.LocalizedTitle,
+                    Description = ds.Description,
+                    Uri = ds.UserInfo[SHORTCUT_URI_KEY].ToString(),
+                    Icon = ds.Icon.ToString()
+                });
+                return shortcuts.ToList();
             });
         }
 
@@ -52,35 +60,30 @@ namespace Plugin.AppShortcuts
         {
             return Task.Run(() =>
             {
-                //TODO
+                var shortcutIdString = shortcutId.ToString();
+                var shortcutItem =
+                    UIApplication.SharedApplication.ShortcutItems.FirstOrDefault(si => si.Type.Equals(shortcutIdString));
+
+                if (shortcutItem != null)
+                    UIApplication.SharedApplication.ShortcutItems.ToList().Remove(shortcutItem);
             });
         }
 
-        private NSDictionary<NSString, NSObject> CreateUserInfo(UIApplicationShortcutIconType type)
+        private NSDictionary<NSString, NSObject> CreateUserInfo(string uri)
         {
-            int rawValue = Convert.ToInt32(type);
-            return new NSDictionary<NSString, NSObject>(ApplicationShortcutUserInfoIconKey, new NSNumber(rawValue));
+            var userInfo = new NSDictionary<NSString, NSObject>(new NSString(SHORTCUT_URI_KEY), new NSString(uri));
+            return userInfo;
         }
 
         private UIApplicationShortcutIcon CreateIcon(UIApplicationShortcutIconType type)
         {
             return UIApplicationShortcutIcon.FromType(type);
         }
-    }
 
-    enum ShortcutIdentifierType
-    {
-        First,
-        Second,
-        Third,
-        Fourth,
-    }
-
-    static class ShortcutIdentifierTypeExtensions
-    {
-        public static string GetTypeName(this ShortcutIdentifierType self)
+        private UIApplicationShortcutIcon CreateIcon(string assetName)
         {
-            return string.Format("{0} {1}", NSBundle.MainBundle.BundleIdentifier, self);
+            var icon = UIApplicationShortcutIcon.FromTemplateImageName(assetName);
+            return icon;
         }
     }
 }

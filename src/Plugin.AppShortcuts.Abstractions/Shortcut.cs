@@ -19,6 +19,7 @@ namespace Plugin.AppShortcuts.Abstractions
         public Guid ID { get; }
         public string Label { get; set; }
         public string Description { get; set; }
+        public string Icon { get; set; }
         public string Uri { get; set; }
     }
 }
