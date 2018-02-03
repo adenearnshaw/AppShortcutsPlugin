@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
     <id>Plugin.AppShortcuts</id>
-    <version>0.0.1-alpha8</version>
+    <version>0.0.2-alpha3</version>
     <title>Manage App Shortcuts for Xamarin</title>
     <authors>Aden Earnshaw</authors>
     <owners>Aden Earnshaw</owners>

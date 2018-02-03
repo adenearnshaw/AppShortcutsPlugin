@@ -27,16 +27,20 @@ namespace Plugin.AppShortcuts
                 var icon = CreateIcon(shortcut.Icon);
                 var userInfo = CreateUserInfo(shortcut.Uri);
 
-                var scut = new UIMutableApplicationShortcutItem(type,
-                                                                shortcut.Label,
-                                                                shortcut.Description,
-                                                                icon,
-                                                                userInfo);
+                new NSObject().BeginInvokeOnMainThread(() =>
+                {
+                    var scut = new UIMutableApplicationShortcutItem(type,
+                                                                    shortcut.Label,
+                                                                    shortcut.Description,
+                                                                    icon,
+                                                                    userInfo);
 
-                if (UIApplication.SharedApplication.ShortcutItems == null)
-                    UIApplication.SharedApplication.ShortcutItems = new UIApplicationShortcutItem[0];
 
-                UIApplication.SharedApplication.ShortcutItems.Append(scut);
+                    if (UIApplication.SharedApplication.ShortcutItems == null)
+                        UIApplication.SharedApplication.ShortcutItems = new UIApplicationShortcutItem[0];
+
+                    UIApplication.SharedApplication.ShortcutItems.Append(scut);
+                });
             });
         }
 
@@ -44,13 +48,18 @@ namespace Plugin.AppShortcuts
         {
             return Task.Run(() =>
             {
-                var dynamicShortcuts = UIApplication.SharedApplication.ShortcutItems ?? new UIApplicationShortcutItem[0];
+                UIApplicationShortcutItem[] dynamicShortcuts = null;
+                new NSObject().BeginInvokeOnMainThread(() =>
+                {
+                    dynamicShortcuts = UIApplication.SharedApplication.ShortcutItems ?? new UIApplicationShortcutItem[0];
+                });
+
                 var shortcuts = dynamicShortcuts.Select(ds => new Shortcut
                 {
                     Label = ds.LocalizedTitle,
                     Description = ds.Description,
-                    Uri = ds.UserInfo[SHORTCUT_URI_KEY].ToString(),
-                    Icon = ds.Icon.ToString()
+                    Uri = ds?.UserInfo[SHORTCUT_URI_KEY]?.ToString() ?? string.Empty,
+                    Icon = ds?.Icon?.ToString() ?? string.Empty
                 });
                 return shortcuts.ToList();
             });
@@ -64,8 +73,11 @@ namespace Plugin.AppShortcuts
                 var shortcutItem =
                     UIApplication.SharedApplication.ShortcutItems.FirstOrDefault(si => si.Type.Equals(shortcutIdString));
 
-                if (shortcutItem != null)
-                    UIApplication.SharedApplication.ShortcutItems.ToList().Remove(shortcutItem);
+                new NSObject().BeginInvokeOnMainThread(() =>
+                {
+                    if (shortcutItem != null)
+                        UIApplication.SharedApplication.ShortcutItems.ToList().Remove(shortcutItem);
+                });
             });
         }
 
@@ -82,7 +94,14 @@ namespace Plugin.AppShortcuts
 
         private UIApplicationShortcutIcon CreateIcon(string assetName)
         {
-            var icon = UIApplicationShortcutIcon.FromTemplateImageName(assetName);
+            if (string.IsNullOrWhiteSpace(assetName))
+                return null;
+
+            UIApplicationShortcutIcon icon = null;
+            new NSObject().BeginInvokeOnMainThread(() =>
+            {
+                icon = UIApplicationShortcutIcon.FromTemplateImageName(assetName);
+            });
             return icon;
         }
     }
