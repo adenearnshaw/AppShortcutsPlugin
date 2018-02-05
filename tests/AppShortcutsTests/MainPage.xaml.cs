@@ -45,7 +45,8 @@ namespace AppShortcutsTests
             var shortcut = new Shortcut
             {
                 Label = $"Shortcut {Shortcuts.Count + 1}",
-                Description = $"Added {DateTime.Now}"
+                Description = $"Added {DateTime.Now}",
+                Icon = ""
             };
             shortcut.Uri = $"stc://AppShortcutsTests/MainPage/{shortcut.ID}";
 
@@ -55,7 +56,8 @@ namespace AppShortcutsTests
 
         public async void DeleteShortcut(object sender, EventArgs e)
         {
-            var sc = (Shortcut)sender;
+            var menuItem = (MenuItem) sender;
+            var sc = (Shortcut)menuItem.CommandParameter;
             await CrossAppShortcuts.Current.RemoveShortcut(sc.ID);
             await RefreshShortcutsList();
         }
@@ -64,11 +66,14 @@ namespace AppShortcutsTests
         {
             var shortcuts = await CrossAppShortcuts.Current.GetShortcuts();
 
-            Shortcuts.Clear();
-            foreach (var sc in shortcuts)
+            Device.BeginInvokeOnMainThread(() =>
             {
-                Shortcuts.Add(sc);
-            }
+                Shortcuts.Clear();
+                foreach (var sc in shortcuts)
+                {
+                    Shortcuts.Add(sc);
+                }
+            });
         }
 
         private void ProcessDeeplink(object sender, string uri)
