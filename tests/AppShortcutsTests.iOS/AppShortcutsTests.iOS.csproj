@@ -120,7 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Plugin.AppShortcuts">
-      <Version>0.0.1-alpha7</Version>
+      <Version>0.0.2-alpha3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
   </ItemGroup>
@@ -130,5 +130,25 @@
       <Project>{CDDAD0E5-D40D-4157-B5F1-1C38A61259C7}</Project>
       <Name>AppShortcutsTests</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\ShortcutIcons.xcassets\AppIcons.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\ShortcutIcons.xcassets\LaunchImages.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\ShortcutIcons.xcassets\TestIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\ShortcutIcons.xcassets\TestIcon.imageset\TestImage.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\ShortcutIcons.xcassets\TestIcon.imageset\TestImage@2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\ShortcutIcons.xcassets\TestIcon.imageset\TestImage@3x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
 </Project>
