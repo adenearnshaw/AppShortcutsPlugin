@@ -47,9 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Plugin.AppShortcuts">
-      <Version>0.0.2-alpha3</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="25.4.0.2" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="25.4.0.2" />
@@ -79,7 +76,7 @@
     <ProjectReference Include="..\AppShortcutsTests\AppShortcutsTests.csproj">
       <Project>{CDDAD0E5-D40D-4157-B5F1-1C38A61259C7}</Project>
       <Name>AppShortcutsTests</Name>
-    </ProjectReference>
+    </ProjectReference>    
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
