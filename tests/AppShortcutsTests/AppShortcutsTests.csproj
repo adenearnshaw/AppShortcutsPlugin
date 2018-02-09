@@ -16,4 +16,8 @@
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Plugin.AppShortcuts\Plugin.AppShortcuts.csproj" />
+  </ItemGroup>
 </Project>
