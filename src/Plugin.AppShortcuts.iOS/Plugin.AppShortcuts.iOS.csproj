@@ -62,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj">
-      <Project>{4AAC8713-F344-4AA2-9206-A317F3EA43E2}</Project>
+      <Project>{AA4E04F0-3E7B-4E85-B1C6-8AC087662EF1}</Project>
       <Name>Plugin.AppShortcuts.Abstractions</Name>
     </ProjectReference>
   </ItemGroup>

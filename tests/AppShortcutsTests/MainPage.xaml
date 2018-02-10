@@ -14,7 +14,7 @@
             <DataTemplate>
                 <TextCell Text="{Binding Label}" Detail="{Binding Uri}">
                     <TextCell.ContextActions>
-                        <MenuItem Text="Delete" Clicked="DeleteShortcut" CommandParameter="{Binding .}" />
+                        <MenuItem Text="Delete" Clicked="DeleteShortcut" CommandParameter="{Binding .}" IsDestructive="true" />
                     </TextCell.ContextActions>
                 </TextCell>
             </DataTemplate>

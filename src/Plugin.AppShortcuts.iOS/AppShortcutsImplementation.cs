@@ -19,11 +19,11 @@ namespace Plugin.AppShortcuts
 
         public bool IsSupportedByCurrentPlatformVersion { get; }
 
-        public Task AddShortcut(Shortcut shortcut)
+        public async Task AddShortcut(Shortcut shortcut)
         {
-            return Task.Run(() =>
+            await Task.Run(() =>
             {
-                var type = shortcut.ID.ToString();
+                var type = shortcut.ID;
                 var icon = CreateIcon(shortcut.Icon);
                 var userInfo = CreateUserInfo(shortcut.Uri);
 
@@ -35,48 +35,42 @@ namespace Plugin.AppShortcuts
                                                                     icon,
                                                                     userInfo);
 
+                    var scuts = UIApplication.SharedApplication.ShortcutItems.ToList();
+                    scuts.Add(scut);
 
-                    if (UIApplication.SharedApplication.ShortcutItems == null)
-                        UIApplication.SharedApplication.ShortcutItems = new UIApplicationShortcutItem[0];
-
-                    UIApplication.SharedApplication.ShortcutItems.Append(scut);
+                    UIApplication.SharedApplication.ShortcutItems = scuts.ToArray();
                 });
             });
         }
 
-        public Task<List<Shortcut>> GetShortcuts()
+        public async Task<List<Shortcut>> GetShortcuts()
         {
-            return Task.Run(() =>
+            var dynamicShortcuts = UIApplication.SharedApplication.ShortcutItems.ToList();
+            var shortcuts = dynamicShortcuts.Select(ds => new Shortcut(ds.Type)
             {
-                UIApplicationShortcutItem[] dynamicShortcuts = null;
-                new NSObject().BeginInvokeOnMainThread(() =>
-                {
-                    dynamicShortcuts = UIApplication.SharedApplication.ShortcutItems ?? new UIApplicationShortcutItem[0];
-                });
-
-                var shortcuts = dynamicShortcuts.Select(ds => new Shortcut
-                {
-                    Label = ds.LocalizedTitle,
-                    Description = ds.Description,
-                    Uri = ds?.UserInfo[SHORTCUT_URI_KEY]?.ToString() ?? string.Empty,
-                    Icon = ds?.Icon?.ToString() ?? string.Empty
-                });
-                return shortcuts.ToList();
-            });
+                Label = ds.LocalizedTitle,
+                Description = ds.LocalizedSubtitle,
+                Uri = ds?.UserInfo[SHORTCUT_URI_KEY]?.ToString() ?? string.Empty,
+                Icon = ds?.Icon?.ToString() ?? string.Empty
+            }).ToList();
+            return shortcuts;
         }
 
-        public Task RemoveShortcut(Guid shortcutId)
+        public async Task RemoveShortcut(string shortcutId)
         {
-            return Task.Run(() =>
+            await Task.Run(() =>
             {
-                var shortcutIdString = shortcutId.ToString();
-                var shortcutItem =
-                    UIApplication.SharedApplication.ShortcutItems.FirstOrDefault(si => si.Type.Equals(shortcutIdString));
-
                 new NSObject().BeginInvokeOnMainThread(() =>
                 {
-                    if (shortcutItem != null)
-                        UIApplication.SharedApplication.ShortcutItems.ToList().Remove(shortcutItem);
+                    var shortcutItem =
+                        UIApplication.SharedApplication.ShortcutItems.FirstOrDefault(si => si.Type.Equals(shortcutId));
+
+                    if (shortcutItem == null)
+                        return;
+
+                    var updatedItems = UIApplication.SharedApplication.ShortcutItems.ToList();
+                    updatedItems.Remove(shortcutItem);
+                    UIApplication.SharedApplication.ShortcutItems = updatedItems.ToArray();
                 });
             });
         }

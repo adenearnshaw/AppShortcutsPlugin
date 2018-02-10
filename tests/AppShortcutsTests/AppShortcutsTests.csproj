@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Plugin.AppShortcuts" Version="0.0.2-alpha3" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
   </ItemGroup>
 
@@ -16,5 +15,9 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Plugin.AppShortcuts\Plugin.AppShortcuts.csproj" />
   </ItemGroup>
 </Project>
