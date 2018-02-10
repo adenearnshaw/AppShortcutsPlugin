@@ -8,6 +8,6 @@ namespace Plugin.AppShortcuts.Abstractions
     {
         Task<List<Shortcut>> GetShortcuts();
         Task AddShortcut(Shortcut shortcut);
-        Task RemoveShortcut(Guid shortcutId);
+        Task RemoveShortcut(string shortcutId);
     }
 }

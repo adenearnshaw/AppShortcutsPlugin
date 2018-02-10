@@ -33,7 +33,7 @@ namespace Plugin.AppShortcuts
                     return;
 
                 var context = Application.Context;
-                var builder = new ShortcutInfo.Builder(context, shortcut.ID.ToString());
+                var builder = new ShortcutInfo.Builder(context, shortcut.ID);
 
                 var uri = AUri.Parse(shortcut.Uri);
 
@@ -58,7 +58,7 @@ namespace Plugin.AppShortcuts
                     return new List<Shortcut>();
 
                 var dynamicShortcuts = _manager.DynamicShortcuts;
-                var shortcuts = dynamicShortcuts.Select(s => new Shortcut(Guid.Parse(s.Id))
+                var shortcuts = dynamicShortcuts.Select(s => new Shortcut(s.Id)
                 {
                     Label = s.ShortLabel,
                     Description = s.LongLabel,
@@ -68,14 +68,14 @@ namespace Plugin.AppShortcuts
             });
         }
 
-        public Task RemoveShortcut(Guid shortcutId)
+        public Task RemoveShortcut(string shortcutId)
         {
             return Task.Run(() =>
             {
                 if (!_isShortcutsSupported)
                     return;
 
-                _manager.RemoveDynamicShortcuts(new List<string> { shortcutId.ToString() });
+                _manager.RemoveDynamicShortcuts(new List<string> { shortcutId });
             });
         }
     }

@@ -7,16 +7,16 @@ namespace Plugin.AppShortcuts.Abstractions
     {
         public Shortcut()
         {
-            ID = Guid.NewGuid();
+            ID = Guid.NewGuid().ToString();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Shortcut(Guid id)
+        public Shortcut(string shortcutId)
         {
-            ID = id;
+            ID = shortcutId;
         }
 
-        public Guid ID { get; }
+        public string ID { get; }
         public string Label { get; set; }
         public string Description { get; set; }
         public string Icon { get; set; }
