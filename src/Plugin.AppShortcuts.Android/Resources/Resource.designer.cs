@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("Plugin.AppShortcuts.Android.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("Plugin.AppShortcuts.Resource", IsApplication=false)]
 
-namespace Plugin.AppShortcuts.Android
+namespace Plugin.AppShortcuts
 {
 	
 	
@@ -37,11 +37,108 @@ namespace Plugin.AppShortcuts.Android
 			}
 		}
 		
-		public partial class String
+		public partial class Drawable
 		{
 			
 			// aapt resource value: 0x7f020000
-			public static int library_name = 2130837504;
+			public static int ic_sc_add = 2130837504;
+			
+			// aapt resource value: 0x7f020001
+			public static int ic_sc_alarm = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public static int ic_sc_audio = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public static int ic_sc_bookmark = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public static int ic_sc_capturephoto = 2130837508;
+			
+			// aapt resource value: 0x7f020005
+			public static int ic_sc_capturevideo = 2130837509;
+			
+			// aapt resource value: 0x7f020006
+			public static int ic_sc_cloud = 2130837510;
+			
+			// aapt resource value: 0x7f020007
+			public static int ic_sc_compose = 2130837511;
+			
+			// aapt resource value: 0x7f020008
+			public static int ic_sc_confirmation = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public static int ic_sc_contact = 2130837513;
+			
+			// aapt resource value: 0x7f02000a
+			public static int ic_sc_date = 2130837514;
+			
+			// aapt resource value: 0x7f02000b
+			public static int ic_sc_favorite = 2130837515;
+			
+			// aapt resource value: 0x7f02000c
+			public static int ic_sc_home = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public static int ic_sc_location = 2130837517;
+			
+			// aapt resource value: 0x7f02000e
+			public static int ic_sc_love = 2130837518;
+			
+			// aapt resource value: 0x7f02000f
+			public static int ic_sc_mail = 2130837519;
+			
+			// aapt resource value: 0x7f020010
+			public static int ic_sc_marklocation = 2130837520;
+			
+			// aapt resource value: 0x7f020011
+			public static int ic_sc_message = 2130837521;
+			
+			// aapt resource value: 0x7f020012
+			public static int ic_sc_pause = 2130837522;
+			
+			// aapt resource value: 0x7f020013
+			public static int ic_sc_play = 2130837523;
+			
+			// aapt resource value: 0x7f020014
+			public static int ic_sc_prohibit = 2130837524;
+			
+			// aapt resource value: 0x7f020015
+			public static int ic_sc_search = 2130837525;
+			
+			// aapt resource value: 0x7f020016
+			public static int ic_sc_share = 2130837526;
+			
+			// aapt resource value: 0x7f020017
+			public static int ic_sc_shuffle = 2130837527;
+			
+			// aapt resource value: 0x7f020018
+			public static int ic_sc_task = 2130837528;
+			
+			// aapt resource value: 0x7f020019
+			public static int ic_sc_taskcompleted = 2130837529;
+			
+			// aapt resource value: 0x7f02001a
+			public static int ic_sc_time = 2130837530;
+			
+			// aapt resource value: 0x7f02001b
+			public static int ic_sc_update = 2130837531;
+			
+			static Drawable()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Drawable()
+			{
+			}
+		}
+		
+		public partial class String
+		{
+			
+			// aapt resource value: 0x7f030000
+			public static int library_name = 2130903040;
 			
 			static String()
 			{

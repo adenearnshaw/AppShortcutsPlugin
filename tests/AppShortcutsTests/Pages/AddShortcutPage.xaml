@@ -1,0 +1,49 @@
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppShortcutsTests.Pages.AddShortcutPage">
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Entry x:Name="TitleEntry" Placeholder="Title" />
+            <Entry x:Name="SubtitleEntry" Placeholder="Sub-title"/>
+            <Picker x:Name="IconTypePicker" Title="Icon Type">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Default</x:String>
+                        <x:String>Add</x:String>
+                        <x:String>Alarm</x:String>
+                        <x:String>Audio</x:String>
+                        <x:String>Bookmark</x:String>
+                        <x:String>CapturePhoto</x:String>
+                        <x:String>CaptureVideo</x:String>
+                        <x:String>Cloud</x:String>
+                        <x:String>Compose</x:String>
+                        <x:String>Confirmation</x:String>
+                        <x:String>Contact</x:String>
+                        <x:String>Date</x:String>
+                        <x:String>Favorite</x:String>
+                        <x:String>Home</x:String>
+                        <x:String>Invitation</x:String>
+                        <x:String>Location</x:String>
+                        <x:String>Love</x:String>
+                        <x:String>Mail</x:String>
+                        <x:String>MarkLocation</x:String>
+                        <x:String>Message</x:String>
+                        <x:String>Pause</x:String>
+                        <x:String>Play</x:String>
+                        <x:String>Prohibit</x:String>
+                        <x:String>Search</x:String>
+                        <x:String>Share</x:String>
+                        <x:String>Shuffle</x:String>
+                        <x:String>Task</x:String>
+                        <x:String>TaskCompleted</x:String>
+                        <x:String>Time</x:String>
+                        <x:String>Update</x:String>
+                        <x:String>Custom</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Entry x:Name="CustomIconEntry" Placeholder="Custom Icon"/>
+            <Button x:Name="SubmitButton" Text="Add shortcut" Clicked="CreateNewShortcut"></Button>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

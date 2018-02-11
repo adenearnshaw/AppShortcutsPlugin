@@ -26,7 +26,35 @@ namespace AppShortcutsTests.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Plugin.AppShortcuts.Android.Resource.String.library_name = global::AppShortcutsTests.Droid.Resource.String.library_name;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_add = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_add;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_alarm = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_alarm;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_audio = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_audio;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_bookmark = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_bookmark;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_capturephoto = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_capturephoto;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_capturevideo = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_capturevideo;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_cloud = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_cloud;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_compose = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_compose;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_confirmation = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_confirmation;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_contact = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_contact;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_date = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_date;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_favorite = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_favorite;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_home = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_home;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_location = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_location;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_love = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_love;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_mail = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_mail;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_marklocation = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_marklocation;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_message = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_message;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_pause = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_pause;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_play = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_play;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_prohibit = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_prohibit;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_search = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_search;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_share = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_share;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_shuffle = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_shuffle;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_task = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_task;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_taskcompleted = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_taskcompleted;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_time = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_time;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_update = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_update;
+			global::Plugin.AppShortcuts.Resource.String.library_name = global::AppShortcutsTests.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::AppShortcutsTests.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -2193,26 +2221,26 @@ namespace AppShortcutsTests.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f02010e
-			public const int avd_hide_password_1 = 2130837774;
+			// aapt resource value: 0x7f02012a
+			public const int avd_hide_password_1 = 2130837802;
 			
-			// aapt resource value: 0x7f02010f
-			public const int avd_hide_password_2 = 2130837775;
+			// aapt resource value: 0x7f02012b
+			public const int avd_hide_password_2 = 2130837803;
 			
-			// aapt resource value: 0x7f020110
-			public const int avd_hide_password_3 = 2130837776;
+			// aapt resource value: 0x7f02012c
+			public const int avd_hide_password_3 = 2130837804;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f020111
-			public const int avd_show_password_1 = 2130837777;
+			// aapt resource value: 0x7f02012d
+			public const int avd_show_password_1 = 2130837805;
 			
-			// aapt resource value: 0x7f020112
-			public const int avd_show_password_2 = 2130837778;
+			// aapt resource value: 0x7f02012e
+			public const int avd_show_password_2 = 2130837806;
 			
-			// aapt resource value: 0x7f020113
-			public const int avd_show_password_3 = 2130837779;
+			// aapt resource value: 0x7f02012f
+			public const int avd_show_password_3 = 2130837807;
 			
 			// aapt resource value: 0x7f020055
 			public const int design_bottom_navigation_item_background = 2130837589;
@@ -2650,124 +2678,208 @@ namespace AppShortcutsTests.Droid
 			public const int ic_mr_button_grey = 2130837733;
 			
 			// aapt resource value: 0x7f0200e6
-			public const int ic_vol_type_speaker_dark = 2130837734;
+			public const int ic_sc_add = 2130837734;
 			
 			// aapt resource value: 0x7f0200e7
-			public const int ic_vol_type_speaker_group_dark = 2130837735;
+			public const int ic_sc_alarm = 2130837735;
 			
 			// aapt resource value: 0x7f0200e8
-			public const int ic_vol_type_speaker_group_light = 2130837736;
+			public const int ic_sc_audio = 2130837736;
 			
 			// aapt resource value: 0x7f0200e9
-			public const int ic_vol_type_speaker_light = 2130837737;
+			public const int ic_sc_bookmark = 2130837737;
 			
 			// aapt resource value: 0x7f0200ea
-			public const int ic_vol_type_tv_dark = 2130837738;
+			public const int ic_sc_capturephoto = 2130837738;
 			
 			// aapt resource value: 0x7f0200eb
-			public const int ic_vol_type_tv_light = 2130837739;
+			public const int ic_sc_capturevideo = 2130837739;
 			
 			// aapt resource value: 0x7f0200ec
-			public const int icon = 2130837740;
+			public const int ic_sc_cloud = 2130837740;
 			
 			// aapt resource value: 0x7f0200ed
-			public const int mr_button_connected_dark = 2130837741;
+			public const int ic_sc_compose = 2130837741;
 			
 			// aapt resource value: 0x7f0200ee
-			public const int mr_button_connected_light = 2130837742;
+			public const int ic_sc_confirmation = 2130837742;
 			
 			// aapt resource value: 0x7f0200ef
-			public const int mr_button_connecting_dark = 2130837743;
+			public const int ic_sc_contact = 2130837743;
 			
 			// aapt resource value: 0x7f0200f0
-			public const int mr_button_connecting_light = 2130837744;
+			public const int ic_sc_date = 2130837744;
 			
 			// aapt resource value: 0x7f0200f1
-			public const int mr_button_dark = 2130837745;
+			public const int ic_sc_favorite = 2130837745;
 			
 			// aapt resource value: 0x7f0200f2
-			public const int mr_button_light = 2130837746;
+			public const int ic_sc_home = 2130837746;
 			
 			// aapt resource value: 0x7f0200f3
-			public const int mr_dialog_close_dark = 2130837747;
+			public const int ic_sc_location = 2130837747;
 			
 			// aapt resource value: 0x7f0200f4
-			public const int mr_dialog_close_light = 2130837748;
+			public const int ic_sc_love = 2130837748;
 			
 			// aapt resource value: 0x7f0200f5
-			public const int mr_dialog_material_background_dark = 2130837749;
+			public const int ic_sc_mail = 2130837749;
 			
 			// aapt resource value: 0x7f0200f6
-			public const int mr_dialog_material_background_light = 2130837750;
+			public const int ic_sc_marklocation = 2130837750;
 			
 			// aapt resource value: 0x7f0200f7
-			public const int mr_group_collapse = 2130837751;
+			public const int ic_sc_message = 2130837751;
 			
 			// aapt resource value: 0x7f0200f8
-			public const int mr_group_expand = 2130837752;
+			public const int ic_sc_pause = 2130837752;
 			
 			// aapt resource value: 0x7f0200f9
-			public const int mr_media_pause_dark = 2130837753;
+			public const int ic_sc_play = 2130837753;
 			
 			// aapt resource value: 0x7f0200fa
-			public const int mr_media_pause_light = 2130837754;
+			public const int ic_sc_prohibit = 2130837754;
 			
 			// aapt resource value: 0x7f0200fb
-			public const int mr_media_play_dark = 2130837755;
+			public const int ic_sc_search = 2130837755;
 			
 			// aapt resource value: 0x7f0200fc
-			public const int mr_media_play_light = 2130837756;
+			public const int ic_sc_share = 2130837756;
 			
 			// aapt resource value: 0x7f0200fd
-			public const int mr_media_stop_dark = 2130837757;
+			public const int ic_sc_shuffle = 2130837757;
 			
 			// aapt resource value: 0x7f0200fe
-			public const int mr_media_stop_light = 2130837758;
+			public const int ic_sc_task = 2130837758;
 			
 			// aapt resource value: 0x7f0200ff
-			public const int mr_vol_type_audiotrack_dark = 2130837759;
+			public const int ic_sc_taskcompleted = 2130837759;
 			
 			// aapt resource value: 0x7f020100
-			public const int mr_vol_type_audiotrack_light = 2130837760;
+			public const int ic_sc_time = 2130837760;
 			
 			// aapt resource value: 0x7f020101
-			public const int navigation_empty_icon = 2130837761;
+			public const int ic_sc_update = 2130837761;
 			
 			// aapt resource value: 0x7f020102
-			public const int notification_action_background = 2130837762;
+			public const int ic_vol_type_speaker_dark = 2130837762;
 			
 			// aapt resource value: 0x7f020103
-			public const int notification_bg = 2130837763;
+			public const int ic_vol_type_speaker_group_dark = 2130837763;
 			
 			// aapt resource value: 0x7f020104
-			public const int notification_bg_low = 2130837764;
+			public const int ic_vol_type_speaker_group_light = 2130837764;
 			
 			// aapt resource value: 0x7f020105
-			public const int notification_bg_low_normal = 2130837765;
+			public const int ic_vol_type_speaker_light = 2130837765;
 			
 			// aapt resource value: 0x7f020106
-			public const int notification_bg_low_pressed = 2130837766;
+			public const int ic_vol_type_tv_dark = 2130837766;
 			
 			// aapt resource value: 0x7f020107
-			public const int notification_bg_normal = 2130837767;
+			public const int ic_vol_type_tv_light = 2130837767;
 			
 			// aapt resource value: 0x7f020108
-			public const int notification_bg_normal_pressed = 2130837768;
+			public const int icon = 2130837768;
 			
 			// aapt resource value: 0x7f020109
-			public const int notification_icon_background = 2130837769;
-			
-			// aapt resource value: 0x7f02010c
-			public const int notification_template_icon_bg = 2130837772;
-			
-			// aapt resource value: 0x7f02010d
-			public const int notification_template_icon_low_bg = 2130837773;
+			public const int mr_button_connected_dark = 2130837769;
 			
 			// aapt resource value: 0x7f02010a
-			public const int notification_tile_bg = 2130837770;
+			public const int mr_button_connected_light = 2130837770;
 			
 			// aapt resource value: 0x7f02010b
-			public const int notify_panel_notification_icon_bg = 2130837771;
+			public const int mr_button_connecting_dark = 2130837771;
+			
+			// aapt resource value: 0x7f02010c
+			public const int mr_button_connecting_light = 2130837772;
+			
+			// aapt resource value: 0x7f02010d
+			public const int mr_button_dark = 2130837773;
+			
+			// aapt resource value: 0x7f02010e
+			public const int mr_button_light = 2130837774;
+			
+			// aapt resource value: 0x7f02010f
+			public const int mr_dialog_close_dark = 2130837775;
+			
+			// aapt resource value: 0x7f020110
+			public const int mr_dialog_close_light = 2130837776;
+			
+			// aapt resource value: 0x7f020111
+			public const int mr_dialog_material_background_dark = 2130837777;
+			
+			// aapt resource value: 0x7f020112
+			public const int mr_dialog_material_background_light = 2130837778;
+			
+			// aapt resource value: 0x7f020113
+			public const int mr_group_collapse = 2130837779;
+			
+			// aapt resource value: 0x7f020114
+			public const int mr_group_expand = 2130837780;
+			
+			// aapt resource value: 0x7f020115
+			public const int mr_media_pause_dark = 2130837781;
+			
+			// aapt resource value: 0x7f020116
+			public const int mr_media_pause_light = 2130837782;
+			
+			// aapt resource value: 0x7f020117
+			public const int mr_media_play_dark = 2130837783;
+			
+			// aapt resource value: 0x7f020118
+			public const int mr_media_play_light = 2130837784;
+			
+			// aapt resource value: 0x7f020119
+			public const int mr_media_stop_dark = 2130837785;
+			
+			// aapt resource value: 0x7f02011a
+			public const int mr_media_stop_light = 2130837786;
+			
+			// aapt resource value: 0x7f02011b
+			public const int mr_vol_type_audiotrack_dark = 2130837787;
+			
+			// aapt resource value: 0x7f02011c
+			public const int mr_vol_type_audiotrack_light = 2130837788;
+			
+			// aapt resource value: 0x7f02011d
+			public const int navigation_empty_icon = 2130837789;
+			
+			// aapt resource value: 0x7f02011e
+			public const int notification_action_background = 2130837790;
+			
+			// aapt resource value: 0x7f02011f
+			public const int notification_bg = 2130837791;
+			
+			// aapt resource value: 0x7f020120
+			public const int notification_bg_low = 2130837792;
+			
+			// aapt resource value: 0x7f020121
+			public const int notification_bg_low_normal = 2130837793;
+			
+			// aapt resource value: 0x7f020122
+			public const int notification_bg_low_pressed = 2130837794;
+			
+			// aapt resource value: 0x7f020123
+			public const int notification_bg_normal = 2130837795;
+			
+			// aapt resource value: 0x7f020124
+			public const int notification_bg_normal_pressed = 2130837796;
+			
+			// aapt resource value: 0x7f020125
+			public const int notification_icon_background = 2130837797;
+			
+			// aapt resource value: 0x7f020128
+			public const int notification_template_icon_bg = 2130837800;
+			
+			// aapt resource value: 0x7f020129
+			public const int notification_template_icon_low_bg = 2130837801;
+			
+			// aapt resource value: 0x7f020126
+			public const int notification_tile_bg = 2130837798;
+			
+			// aapt resource value: 0x7f020127
+			public const int notify_panel_notification_icon_bg = 2130837799;
 			
 			static Drawable()
 			{

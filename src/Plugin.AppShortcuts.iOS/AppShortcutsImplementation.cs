@@ -24,8 +24,10 @@ namespace Plugin.AppShortcuts
             await Task.Run(() =>
             {
                 var type = shortcut.ID;
-                var icon = CreateIcon(shortcut.Icon);
-                var userInfo = CreateUserInfo(shortcut.Uri);
+                var icon = shortcut.Icon == ShortcutIconType.Custom
+                            ? CreateCustomIcon(shortcut.CustomIconName)
+                            : CreateIcon(shortcut.Icon);
+                var metadata = CreateUriMetadata(shortcut.Uri);
 
                 new NSObject().BeginInvokeOnMainThread(() =>
                 {
@@ -33,7 +35,7 @@ namespace Plugin.AppShortcuts
                                                                     shortcut.Label,
                                                                     shortcut.Description,
                                                                     icon,
-                                                                    userInfo);
+                                                                    metadata);
 
                     var scuts = UIApplication.SharedApplication.ShortcutItems.ToList();
                     scuts.Add(scut);
@@ -51,7 +53,7 @@ namespace Plugin.AppShortcuts
                 Label = ds.LocalizedTitle,
                 Description = ds.LocalizedSubtitle,
                 Uri = ds?.UserInfo[SHORTCUT_URI_KEY]?.ToString() ?? string.Empty,
-                Icon = ds?.Icon?.ToString() ?? string.Empty
+                Icon = ResolveShortcutIconType(ds?.Icon?.ToString() ?? string.Empty)
             }).ToList();
             return shortcuts;
         }
@@ -75,18 +77,28 @@ namespace Plugin.AppShortcuts
             });
         }
 
-        private NSDictionary<NSString, NSObject> CreateUserInfo(string uri)
+        private NSDictionary<NSString, NSObject> CreateUriMetadata(string uri)
         {
-            var userInfo = new NSDictionary<NSString, NSObject>(new NSString(SHORTCUT_URI_KEY), new NSString(uri));
-            return userInfo;
+            var metadata = new NSDictionary<NSString, NSObject>(new NSString(SHORTCUT_URI_KEY), new NSString(uri));
+            return metadata;
         }
 
-        private UIApplicationShortcutIcon CreateIcon(UIApplicationShortcutIconType type)
+        private UIApplicationShortcutIcon CreateIcon(ShortcutIconType iconType)
         {
-            return UIApplicationShortcutIcon.FromType(type);
+            var isParseSuccessful = Enum.TryParse(iconType.ToString(), out UIApplicationShortcutIconType type);
+
+            if (!isParseSuccessful)
+                type = UIApplicationShortcutIconType.Favorite;
+
+            UIApplicationShortcutIcon icon = null;
+            new NSObject().BeginInvokeOnMainThread(() =>
+            {
+                icon = UIApplicationShortcutIcon.FromType(type);
+            });
+            return icon;
         }
 
-        private UIApplicationShortcutIcon CreateIcon(string assetName)
+        private UIApplicationShortcutIcon CreateCustomIcon(string assetName)
         {
             if (string.IsNullOrWhiteSpace(assetName))
                 return null;
@@ -98,5 +110,16 @@ namespace Plugin.AppShortcuts
             });
             return icon;
         }
+
+        private Func<string, ShortcutIconType> ResolveShortcutIconType = iconName =>
+        {
+            ShortcutIconType type;
+            var isParseSuccessful = Enum.TryParse(iconName, out type);
+
+            if (!isParseSuccessful)
+                type = ShortcutIconType.Default;
+
+            return type;
+        };
     }
 }
