@@ -11,19 +11,25 @@ namespace Plugin.AppShortcuts
     public class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
     {
         private const string SHORTCUT_URI_KEY = "ShortcutUri";
+        private readonly string NOT_SUPPORTED_ERROR_MESSAGE = $"Operation not supported on iOS 8 or below. Use {nameof(CrossAppShortcuts)}.{nameof(CrossAppShortcuts.IsSupported)} to check if the current device supports this feature.";
+
+        private readonly bool _isShortcutsSupported;
 
         public AppShortcutsImplementation()
         {
-            IsSupportedByCurrentPlatformVersion = UIDevice.CurrentDevice.CheckSystemVersion(9, 0);
+            _isShortcutsSupported = UIDevice.CurrentDevice.CheckSystemVersion(9, 0);
         }
 
         public void Init()
         { }
 
-        public bool IsSupportedByCurrentPlatformVersion { get; }
+        public bool IsSupportedByCurrentPlatformVersion => _isShortcutsSupported;
 
         public async Task AddShortcut(Shortcut shortcut)
         {
+            if (!_isShortcutsSupported)
+                throw new NotSupportedOnDeviceException(NOT_SUPPORTED_ERROR_MESSAGE);
+
             await Task.Run(() =>
             {
                 var type = shortcut.ID;
@@ -50,6 +56,9 @@ namespace Plugin.AppShortcuts
 
         public async Task<List<Shortcut>> GetShortcuts()
         {
+            if (!_isShortcutsSupported)
+                throw new NotSupportedOnDeviceException(NOT_SUPPORTED_ERROR_MESSAGE);
+
             var dynamicShortcuts = UIApplication.SharedApplication.ShortcutItems.ToList();
             var shortcuts = dynamicShortcuts.Select(ds => new Shortcut(ds.Type)
             {
@@ -63,6 +72,9 @@ namespace Plugin.AppShortcuts
 
         public async Task RemoveShortcut(string shortcutId)
         {
+            if (!_isShortcutsSupported)
+                throw new NotSupportedOnDeviceException(NOT_SUPPORTED_ERROR_MESSAGE);
+
             await Task.Run(() =>
             {
                 new NSObject().BeginInvokeOnMainThread(() =>
