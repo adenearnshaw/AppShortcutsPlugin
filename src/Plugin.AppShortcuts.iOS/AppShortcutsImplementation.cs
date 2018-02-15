@@ -17,6 +17,9 @@ namespace Plugin.AppShortcuts
             IsSupportedByCurrentPlatformVersion = UIDevice.CurrentDevice.CheckSystemVersion(9, 0);
         }
 
+        public void Init()
+        { }
+
         public bool IsSupportedByCurrentPlatformVersion { get; }
 
         public async Task AddShortcut(Shortcut shortcut)

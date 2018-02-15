@@ -48,96 +48,45 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_add.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_alarm.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_audio.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_bookmark.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_capturephoto.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_capturevideo.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_cloud.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_compose.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_confirmation.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_contact.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_date.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_default.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_favorite.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_home.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_invitation.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_location.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_love.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_mail.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_marklocation.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_message.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_pause.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_play.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_prohibit.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_search.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_share.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_shuffle.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_task.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_taskcompleted.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_time.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_update.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj">
-      <Project>{AA4E04F0-3E7B-4E85-B1C6-8AC087662EF1}</Project>
+      <Project>{4AAC8713-F344-4AA2-9206-A317F3EA43E2}</Project>
       <Name>Plugin.AppShortcuts.Abstractions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_add.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_alarm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_audio.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_bookmark.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_capturephoto.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_capturevideo.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_cloud.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_compose.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_confirmation.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_contact.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_date.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_favorite.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_home.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_location.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_love.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_mail.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_marklocation.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_message.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_pause.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_play.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_prohibit.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_search.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_share.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_shuffle.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_task.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_taskcompleted.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_time.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_sc_update.xml" />
+    <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <Import Project="..\Plugin.AppShortcuts.Shared\Plugin.AppShortcuts.Shared.projitems" Label="Shared" Condition="Exists('..\Plugin.AppShortcuts.Shared\Plugin.AppShortcuts.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
