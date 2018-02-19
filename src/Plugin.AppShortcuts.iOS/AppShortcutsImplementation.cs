@@ -30,27 +30,24 @@ namespace Plugin.AppShortcuts
             if (!_isShortcutsSupported)
                 throw new NotSupportedOnDeviceException(NOT_SUPPORTED_ERROR_MESSAGE);
 
-            await Task.Run(() =>
+            var type = shortcut.ID;
+            var icon = shortcut.Icon == ShortcutIconType.Custom
+                        ? await CreateCustomIcon(shortcut.CustomIconName)
+                        : await CreateIcon(shortcut.Icon);
+            var metadata = CreateUriMetadata(shortcut.Uri);
+
+            new NSObject().BeginInvokeOnMainThread(() =>
             {
-                var type = shortcut.ID;
-                var icon = shortcut.Icon == ShortcutIconType.Custom
-                            ? CreateCustomIcon(shortcut.CustomIconName)
-                            : CreateIcon(shortcut.Icon);
-                var metadata = CreateUriMetadata(shortcut.Uri);
+                var scut = new UIMutableApplicationShortcutItem(type,
+                                                                shortcut.Label,
+                                                                shortcut.Description,
+                                                                icon,
+                                                                metadata);
 
-                new NSObject().BeginInvokeOnMainThread(() =>
-                {
-                    var scut = new UIMutableApplicationShortcutItem(type,
-                                                                    shortcut.Label,
-                                                                    shortcut.Description,
-                                                                    icon,
-                                                                    metadata);
+                var scuts = UIApplication.SharedApplication.ShortcutItems.ToList();
+                scuts.Add(scut);
 
-                    var scuts = UIApplication.SharedApplication.ShortcutItems.ToList();
-                    scuts.Add(scut);
-
-                    UIApplication.SharedApplication.ShortcutItems = scuts.ToArray();
-                });
+                UIApplication.SharedApplication.ShortcutItems = scuts.ToArray();
             });
         }
 
@@ -67,6 +64,9 @@ namespace Plugin.AppShortcuts
                 Uri = ds?.UserInfo[SHORTCUT_URI_KEY]?.ToString() ?? string.Empty,
                 Icon = ResolveShortcutIconType(ds?.Icon?.ToString() ?? string.Empty)
             }).ToList();
+
+            await Task.Delay(200);
+
             return shortcuts;
         }
 
@@ -75,20 +75,17 @@ namespace Plugin.AppShortcuts
             if (!_isShortcutsSupported)
                 throw new NotSupportedOnDeviceException(NOT_SUPPORTED_ERROR_MESSAGE);
 
-            await Task.Run(() =>
+            new NSObject().BeginInvokeOnMainThread(() =>
             {
-                new NSObject().BeginInvokeOnMainThread(() =>
-                {
-                    var shortcutItem =
-                        UIApplication.SharedApplication.ShortcutItems.FirstOrDefault(si => si.Type.Equals(shortcutId));
+                var shortcutItem =
+                    UIApplication.SharedApplication.ShortcutItems.FirstOrDefault(si => si.Type.Equals(shortcutId));
 
-                    if (shortcutItem == null)
-                        return;
+                if (shortcutItem == null)
+                    return;
 
-                    var updatedItems = UIApplication.SharedApplication.ShortcutItems.ToList();
-                    updatedItems.Remove(shortcutItem);
-                    UIApplication.SharedApplication.ShortcutItems = updatedItems.ToArray();
-                });
+                var updatedItems = UIApplication.SharedApplication.ShortcutItems.ToList();
+                updatedItems.Remove(shortcutItem);
+                UIApplication.SharedApplication.ShortcutItems = updatedItems.ToArray();
             });
         }
 
@@ -98,7 +95,7 @@ namespace Plugin.AppShortcuts
             return metadata;
         }
 
-        private UIApplicationShortcutIcon CreateIcon(ShortcutIconType iconType)
+        private async Task<UIApplicationShortcutIcon> CreateIcon(ShortcutIconType iconType)
         {
             var isParseSuccessful = Enum.TryParse(iconType.ToString(), out UIApplicationShortcutIconType type);
 
@@ -110,10 +107,13 @@ namespace Plugin.AppShortcuts
             {
                 icon = UIApplicationShortcutIcon.FromType(type);
             });
+
+            await Task.Delay(200);
+
             return icon;
         }
 
-        private UIApplicationShortcutIcon CreateCustomIcon(string assetName)
+        private async Task<UIApplicationShortcutIcon> CreateCustomIcon(string assetName)
         {
             if (string.IsNullOrWhiteSpace(assetName))
                 return null;
@@ -123,6 +123,9 @@ namespace Plugin.AppShortcuts
             {
                 icon = UIApplicationShortcutIcon.FromTemplateImageName(assetName);
             });
+
+            await Task.Delay(200);
+
             return icon;
         }
 
