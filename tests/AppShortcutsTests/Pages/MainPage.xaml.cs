@@ -13,6 +13,7 @@ namespace AppShortcutsTests.Pages
         {
             InitializeComponent();
             Shortcuts = new ObservableCollection<Shortcut>();
+
             ShortcutsListView.ItemsSource = Shortcuts;
             ShortcutsListView.RefreshCommand = new Command(async () => await RefreshShortcutsList());
         }
@@ -27,6 +28,8 @@ namespace AppShortcutsTests.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            IsSupportedLabel.Text = $"App shortcuts supported: {(CrossAppShortcuts.IsSupported ? "Yes" : "No")}";
+
             RefreshShortcutsList();
         }
 
@@ -35,9 +38,14 @@ namespace AppShortcutsTests.Pages
             await Navigation.PushAsync(new AddShortcutPage());
         }
 
+        public async void TestShortcuts(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new TestShortcutsPage());
+        }
+
         public async void DeleteShortcut(object sender, EventArgs e)
         {
-            var menuItem = (MenuItem) sender;
+            var menuItem = (MenuItem)sender;
             var sc = (Shortcut)menuItem.CommandParameter;
             await CrossAppShortcuts.Current.RemoveShortcut(sc.ID);
             await RefreshShortcutsList();
@@ -55,6 +63,7 @@ namespace AppShortcutsTests.Pages
                     Shortcuts.Add(sc);
                 }
             });
+            ShortcutsListView.IsRefreshing = false;
         }
 
         private void ProcessDeeplink(object sender, string uri)

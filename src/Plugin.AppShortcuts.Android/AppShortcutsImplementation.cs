@@ -105,9 +105,6 @@ namespace Plugin.AppShortcuts
         {
             try
             {
-                if (iconType == ShortcutIconType.Default)
-                    return null;
-
                 if (iconType == ShortcutIconType.Custom)
                     return CreateIconFromCustomImage(iconName);
 
