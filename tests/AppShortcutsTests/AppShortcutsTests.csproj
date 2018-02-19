@@ -1,23 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj" />
-    <ProjectReference Include="..\..\src\Plugin.AppShortcuts\Plugin.AppShortcuts.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj" />
+		<ProjectReference Include="..\..\src\Plugin.AppShortcuts\Plugin.AppShortcuts.csproj" />
+	</ItemGroup>
 </Project>

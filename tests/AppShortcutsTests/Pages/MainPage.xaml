@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:AppShortcutsTests" x:Class="AppShortcutsTests.Pages.MainPage" Title="AppShortcuts Tests">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Order="Primary" Clicked="AddNewShortcut" />
+        <ToolbarItem Text="Test" Order="Primary" Clicked="TestShortcuts" />
+    </ContentPage.ToolbarItems>
+    <ListView x:Name="ShortcutsListView" IsPullToRefreshEnabled="true">
+        <ListView.Header>
+            <Label x:Name="IsSupportedLabel" Margin="12,0,12,0"/>
+        </ListView.Header>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding Label}" Detail="{Binding Uri}">
+                    <TextCell.ContextActions>
+                        <MenuItem Text="Delete" Clicked="DeleteShortcut" CommandParameter="{Binding .}" IsDestructive="true" />
+                    </TextCell.ContextActions>
+                </TextCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

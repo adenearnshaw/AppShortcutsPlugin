@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="AppShortcutsTests.Pages.TestShortcutsPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Clear" Order="Primary" Clicked="ClearShortcuts" />
+    </ContentPage.ToolbarItems>
+    
+    <ScrollView>
+        <StackLayout>
+            <Button Clicked="AddShortcutSet" CommandParameter="1" Text="Add Set 1"/>
+            <Button Clicked="AddShortcutSet" CommandParameter="2" Text="Add Set 2"/>
+            <Button Clicked="AddShortcutSet" CommandParameter="3" Text="Add Set 3"/>
+            <Button Clicked="AddShortcutSet" CommandParameter="4" Text="Add Set 4"/>
+            <Button Clicked="AddShortcutSet" CommandParameter="5" Text="Add Set 5"/>
+            <Button Clicked="AddShortcutSet" CommandParameter="6" Text="Add Set 6"/>
+            <Button Clicked="AddShortcutSet" CommandParameter="7" Text="Add Set 7"/>
+            <Button Clicked="AddShortcutSet" CommandParameter="8" Text="Add Set 8"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

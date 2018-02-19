@@ -1,10 +1,11 @@
-﻿using Xamarin.Forms;
+﻿using AppShortcutsTests.Pages;
+using Xamarin.Forms;
 
 namespace AppShortcutsTests
 {
     public partial class App : Application
     {
-        public static string DeepLinkMessageName => "DeepLink";
+        public static string DeepLinkUriBase => $"stc://{nameof(AppShortcutsTests)}/{nameof(AddShortcutPage)}/";
 
         public App()
         {
@@ -14,9 +15,9 @@ namespace AppShortcutsTests
 
         protected override void OnAppLinkRequestReceived(System.Uri uri)
         {
-            MessagingCenter.Send<App, string>(this, DeepLinkMessageName, uri.ToString());
-
-            base.OnAppLinkRequestReceived(uri);
+            var shortcutId = uri.ToString().Replace(DeepLinkUriBase, "");
+            MainPage.Navigation.PushAsync(new AddShortcutPage(shortcutId));
+            //base.OnAppLinkRequestReceived(uri);
         }
     }
 }

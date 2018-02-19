@@ -19,7 +19,8 @@ namespace Plugin.AppShortcuts.Abstractions
         public string ID { get; }
         public string Label { get; set; }
         public string Description { get; set; }
-        public string Icon { get; set; }
+        public ShortcutIconType Icon { get; set; }
+        public string CustomIconName { get; set; }
         public string Uri { get; set; }
     }
 }
