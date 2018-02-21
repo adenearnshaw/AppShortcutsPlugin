@@ -1,18 +1,16 @@
-﻿using System;
+﻿using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.OS;
+using Plugin.AppShortcuts.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Android;
-using Android.App;
-using Android.Content;
-using Android.Content.PM;
-using Android.Content.Res;
-using Android.Graphics;
-using Android.Graphics.Drawables;
-using Android.OS;
-using Plugin.AppShortcuts.Abstractions;
 using AUri = Android.Net.Uri;
 using Path = System.IO.Path;
 

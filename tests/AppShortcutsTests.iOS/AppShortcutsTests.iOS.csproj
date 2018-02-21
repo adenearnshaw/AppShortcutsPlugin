@@ -155,10 +155,18 @@
     <ImageAsset Include="Resources\ShortcutIcons.xcassets\TestIcon.imageset\TestImage@3x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Resources\ShortcutIcons.xcassets\ic_beach.imageset\Contents.json" />
-    <ImageAsset Include="Resources\ShortcutIcons.xcassets\ic_beach.imageset\Beach.png" />
-    <ImageAsset Include="Resources\ShortcutIcons.xcassets\ic_beach.imageset\Beach%402x.png" />
-    <ImageAsset Include="Resources\ShortcutIcons.xcassets\ic_beach.imageset\Beach%403x.png" />
+    <ImageAsset Include="Resources\ShortcutIcons.xcassets\ic_beach.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\ShortcutIcons.xcassets\ic_beach.imageset\Beach.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\ShortcutIcons.xcassets\ic_beach.imageset\Beach%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\ShortcutIcons.xcassets\ic_beach.imageset\Beach%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\ShortcutIcons.xcassets\ic_beach.imageset\" />
