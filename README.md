@@ -4,14 +4,14 @@ Dynamically add and remove shortcuts to your app's icon so the user can deep-lin
 
 
 ### Documentation  
-
+Get started by reading the [AppShortcuts Plugin documentation](https://adenearnshaw.github.io/AppShortcutsPlugin)
 
 
 ### NuGet  
-
+Coming soon...
 
 ### Build  
-
+Coming soon...
 
 ### Plaform Support
 
@@ -23,7 +23,7 @@ Dynamically add and remove shortcuts to your app's icon so the user can deep-lin
   
   
   
-### Created By: [@AdenEarnshaw](http://twitter.com/AdenEarnshaw)
+### Created By: AdenEarnshaw
 * Twitter: [@AdenEarnshaw](http://twitter.com/AdenEarnshaw)
 
 
