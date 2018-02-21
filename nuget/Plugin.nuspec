@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
     <id>Plugin.AppShortcuts</id>
-    <version>0.0.2-alpha4</version>
-    <title>Manage App Shortcuts for Xamarin</title>
+    <version>0.0.2-alpha5</version>
+    <title>Manage App Shortcuts for Xamarin and Windows</title>
     <authors>Aden Earnshaw</authors>
     <owners>Aden Earnshaw</owners>
     <licenseUrl>https://github.com/adenearnshaw/AppShortcutsPlugin/blob/master/LICENSE</licenseUrl>
@@ -13,17 +13,13 @@
     <description>
       Dynamically add and remove shortcuts to your app's icon so the user can deep-link into your app.
     </description>
-    <summary>Manage dynamic app shortcuts from shared code.</summary>
+    <summary>AppShortcuts Plugin for Xamarin and Windows</summary>
     <tags>xamarin, pcl, xam.pcl, maps, navigation, external maps, uwp, android, xamarin.forms, ios</tags>
     <dependencies>
-      <!-- <group targetFramework="net">
-      </group> -->
-      <!-- <group targetFramework="win">
-      </group> -->
-      <!-- <group targetFramework="wp">
-      </group> -->
-      <!-- <group targetFramework="wpa">
-      </group> -->
+       <group targetFramework="net">
+      </group> 
+       <group targetFramework="win">
+      </group> 
       <group targetFramework="netstandard1.0">
         <dependency id="NETStandard.Library" version="1.6.1" />
       </group>
@@ -35,8 +31,8 @@
       </group> -->
       <!-- <group targetFramework="portable-net45+win+wpa81+wp80">
       </group> -->
-      <!-- <group targetFramework="uap">
-      </group> -->
+       <group targetFramework="uap">
+      </group> 
       <group targetFramework="dotnet">
       </group>
       <!-- <group targetFramework="xamarintvos">
@@ -46,14 +42,16 @@
     </dependencies>
   </metadata>
   <files>
-    <!--Core-->
+    <!-- NetStandard -->
     <file src="..\src\Plugin.AppShortcuts\bin\Release\netstandard1.0\Plugin.AppShortcuts*.dll" target="lib\netstandard1.0" />
 
-    <!--Xamarin.Android-->
+    <!-- Xamarin.Android -->
     <file src="..\src\Plugin.AppShortcuts.Android\bin\Release\Plugin.AppShortcuts*.dll" target="lib\MonoAndroid10" />
 
-    <!--Xamarin.iOS Unified-->
+    <!-- Xamarin.iOS -->
     <file src="..\src\Plugin.AppShortcuts.iOS\bin\Release\Plugin.AppShortcuts*.dll" target="lib\Xamarin.iOS10" />
 
+    <!-- UWP -->
+    <file src="..\src\Plugin.AppShortcuts.UWP\bin\Release\Plugin.AppShortcuts*.dll" target="lib\UAP10"/>
   </files>
 </package>
