@@ -1,6 +1,6 @@
 ## Getting Started
 
-
+__*TODO: Call Init() in Droid*__
 
 
 
