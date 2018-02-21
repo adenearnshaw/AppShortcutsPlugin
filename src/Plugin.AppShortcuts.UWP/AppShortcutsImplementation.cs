@@ -4,26 +4,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
-using Windows.UI;
 using Windows.UI.StartScreen;
 
-namespace Plugin.AppShortcuts.UWP
+namespace Plugin.AppShortcuts
 {
     public class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
     {
-        private const string DarkIconUriFormat = "ms-appx:///Assets/icon_{0}_white.png";
-        private const string LightIconUriFormat = "ms-appx:///Assets/icon_{0}_black.png";
+        private const string DarkIconUriFormat = "icon_{0}_white.png";
+        private const string LightIconUriFormat = "icon_{0}_black.png";
+
+        private readonly EmbeddedImageHelper _embeddedImageHelper;
 
         private bool _isSupported;
-        private WindowsTheme _windowsTheme;
+        private WindowsTheme _windowsTheme = WindowsTheme.Dark;
+
 
         public AppShortcutsImplementation()
         {
             _isSupported = ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 2) && JumpList.IsSupported();
 
-            var uisettings = new Windows.UI.ViewManagement.UISettings();
-            var color = uisettings.GetColorValue(Windows.UI.ViewManagement.UIColorType.Background);
-            _windowsTheme = color == Colors.Black ? WindowsTheme.Dark : WindowsTheme.Light;
+            _embeddedImageHelper = new EmbeddedImageHelper();
+
+            //var uisettings = new Windows.UI.ViewManagement.UISettings();
+            //var color = uisettings.GetColorValue(Windows.UI.ViewManagement.UIColorType.Foreground);
+            //_windowsTheme = color == Colors.Black ? WindowsTheme.Dark : WindowsTheme.Light;
         }
 
         public void Init()
@@ -36,7 +40,7 @@ namespace Plugin.AppShortcuts.UWP
         {
             var jumplistItem = JumpListItem.CreateWithArguments($"{shortcut.ID}||{shortcut.Uri}", shortcut.Label);
             jumplistItem.Description = shortcut.Description;
-            jumplistItem.Logo = GetIconUri(shortcut.Icon);
+            jumplistItem.Logo = await GetIconUri(shortcut.Icon);
 
             var jumplist = await JumpList.LoadCurrentAsync();
             jumplist.Items.Add(jumplistItem);
@@ -76,17 +80,21 @@ namespace Plugin.AppShortcuts.UWP
             await jumplist.SaveAsync();
         }
 
-        private Uri GetIconUri(ShortcutIconType iconType)
+        private async Task<Uri> GetIconUri(ShortcutIconType iconType)
         {
             var iconName = iconType.ToString().ToLower();
-            string uri;
+
+
+            string iconFileName;
 
             if (_windowsTheme == WindowsTheme.Dark)
-                uri = string.Format(DarkIconUriFormat, iconName);
+                iconFileName = string.Format(DarkIconUriFormat, iconName);
             else
-                uri = string.Format(LightIconUriFormat, iconName);
+                iconFileName = string.Format(LightIconUriFormat, iconName);
 
-            return new Uri(uri);
+            var uri = await _embeddedImageHelper.CopyEmbeddedImageToAppData(iconFileName);
+
+            return uri;
         }
 
 
