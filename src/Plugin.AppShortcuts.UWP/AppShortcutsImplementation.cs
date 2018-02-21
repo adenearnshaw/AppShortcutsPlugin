@@ -40,7 +40,7 @@ namespace Plugin.AppShortcuts
         {
             var jumplistItem = JumpListItem.CreateWithArguments($"{shortcut.ID}||{shortcut.Uri}", shortcut.Label);
             jumplistItem.Description = shortcut.Description;
-            jumplistItem.Logo = await GetIconUri(shortcut.Icon);
+            jumplistItem.Logo = await GetIconUri(shortcut.Icon, shortcut.CustomIconName);
 
             var jumplist = await JumpList.LoadCurrentAsync();
             jumplist.Items.Add(jumplistItem);
@@ -80,11 +80,23 @@ namespace Plugin.AppShortcuts
             await jumplist.SaveAsync();
         }
 
-        private async Task<Uri> GetIconUri(ShortcutIconType iconType)
+        private async Task<Uri> GetIconUri(ShortcutIconType iconType, string fileName = "")
+        {
+            if (iconType == ShortcutIconType.Custom)
+                return GetCustomIconUri(fileName);
+
+            return await GetEmbeddedIconUri(iconType);
+        }
+
+        private Uri GetCustomIconUri(string fileName)
+        {
+            var uri = $"ms-appx:///{fileName}";
+            return new Uri(uri);
+        }
+
+        private async Task<Uri> GetEmbeddedIconUri(ShortcutIconType iconType)
         {
             var iconName = iconType.ToString().ToLower();
-
-
             string iconFileName;
 
             if (_windowsTheme == WindowsTheme.Dark)
@@ -93,7 +105,6 @@ namespace Plugin.AppShortcuts
                 iconFileName = string.Format(LightIconUriFormat, iconName);
 
             var uri = await _embeddedImageHelper.CopyEmbeddedImageToAppData(iconFileName);
-
             return uri;
         }
 

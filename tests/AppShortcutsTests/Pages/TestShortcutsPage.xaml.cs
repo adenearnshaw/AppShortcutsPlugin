@@ -69,7 +69,7 @@ namespace AppShortcutsTests.Pages
                 case 8:
                     await AddShortcut(ShortcutIconType.Update);
                     await AddShortcut(ShortcutIconType.Default);
-                    await AddCustomShortcut("ic_beach");
+                    await AddCustomShortcut("ic_beach.png");
                     break;
             }
 
