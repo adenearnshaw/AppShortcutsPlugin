@@ -1,17 +1,17 @@
 ## AppShortcuts Plugin for Xamarin and Windows  
 
-Dynamically add and remove shortcuts to your app's icon so the user can deep-link into your app.
+Dynamically add and remove shortcuts to your app's icon so the user can deep-link into your app.  
 
 
 ### Documentation  
-Get started by reading the [AppShortcuts Plugin documentation](https://adenearnshaw.github.io/AppShortcutsPlugin)
+Get started by reading the [AppShortcuts Plugin documentation](https://adenearnshaw.github.io/AppShortcutsPlugin)  
 
 
 ### NuGet  
-Coming soon...
+Coming soon...  
 
 ### Build  
-Coming soon...
+Coming soon...  
 
 ### Plaform Support
 
