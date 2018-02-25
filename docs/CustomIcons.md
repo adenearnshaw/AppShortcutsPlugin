@@ -14,8 +14,14 @@ If these icons don't fit your needs, or don't quite match your color scheme, you
 [UWP icon specifications](https://docs.microsoft.com/en-us/windows/uwp/design/shell/tiles-and-notifications/app-assets)  
 [UWP icons](https://docs.microsoft.com/en-us/windows/uwp/design/style/segoe-ui-symbol-font)  
 
+drawable-anydpi-v21
+
 
 __*TODO: Add note about how to add iOS images to AssetCatalog and change to TemplatedIcon*__
+
+iOS 35px
+Android 48px
+UWP 44px
 
 
 <= Back to [Table of Contents](README.md)
