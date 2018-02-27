@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
+﻿using Foundation;
+using System;
 using UIKit;
 
 namespace AppShortcutsSample.iOS
@@ -26,6 +23,15 @@ namespace AppShortcutsSample.iOS
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public override void PerformActionForShortcutItem(UIApplication application, UIApplicationShortcutItem shortcutItem, UIOperationHandler completionHandler)
+        {
+            if (shortcutItem.UserInfo.ContainsKey(new NSString("ShortcutUri")))
+            {
+                var shortcutUri = shortcutItem.UserInfo["ShortcutUri"].ToString();
+                Xamarin.Forms.Application.Current.SendOnAppLinkRequestReceived(new Uri(shortcutUri));
+            }
         }
     }
 }

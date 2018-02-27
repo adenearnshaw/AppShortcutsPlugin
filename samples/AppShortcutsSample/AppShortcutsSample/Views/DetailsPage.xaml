@@ -15,15 +15,9 @@
         <ToolbarItem Name="Pin"
                      Order="Primary"
                      Text="{Binding IsMonkeyPinned, Converter={StaticResource IsPinnedTextConverter}}"
+                     Icon="{Binding IsMonkeyPinned, Converter={StaticResource IsPinnedIconConverter}}"
                      Priority="0"
-                     Command="{Binding PinMonkeyCommand}">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="Binding">
-                    <On Platform="UWP"
-                        Value="{Binding IsMonkeyPinned, Converter={StaticResource IsPinnedIconConverter}}" />
-                </OnPlatform>
-            </ToolbarItem.Icon>
-        </ToolbarItem>
+                     Command="{Binding PinMonkeyCommand}" />
     </ContentPage.ToolbarItems>
     
     <ScrollView>

@@ -23,8 +23,13 @@ namespace AppShortcutsSample.Services
 
         public async Task<bool> IsMonkeyPinned(string monkeyId)
         {
+            var monkey = MonkeyStore.Instance.Monkeys.FirstOrDefault(m => m.Id.Equals(monkeyId));
+
+            if (monkey == null)
+                return false;
+
             var shorcuts = await CrossAppShortcuts.Current.GetShortcuts();
-            var monkeyShortcut = shorcuts.FirstOrDefault(s => s.Uri.Contains(monkeyId));
+            var monkeyShortcut = shorcuts.FirstOrDefault(s => s.ID.Equals(monkey.ShortcutId));
 
             return monkeyShortcut != null;
         }

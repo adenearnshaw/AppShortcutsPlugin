@@ -6,15 +6,16 @@ namespace AppShortcutsSample.UWP
 {
     public sealed partial class MainPage : WindowsPage
     {
-        App _formsApp;
-
         public MainPage()
         {
             this.InitializeComponent();
+            LoadApplication(new App());
+        }
 
-            _formsApp = new App();
-
-            LoadApplication(_formsApp);
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            OnLaunchedEvent(e.Parameter.ToString());
         }
 
         public void OnLaunchedEvent(string arguments)
@@ -22,14 +23,8 @@ namespace AppShortcutsSample.UWP
             if (!string.IsNullOrEmpty(arguments))
             {
                 var parts = arguments.Split("||", StringSplitOptions.RemoveEmptyEntries);
-                _formsApp.SendOnAppLinkRequestReceived(new Uri(parts[1]));
+                Xamarin.Forms.Application.Current.SendOnAppLinkRequestReceived(new Uri(parts[1]));
             }
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            OnLaunchedEvent(e.Parameter.ToString());
         }
     }
 }

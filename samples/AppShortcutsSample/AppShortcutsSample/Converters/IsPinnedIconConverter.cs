@@ -8,8 +8,10 @@ namespace AppShortcutsSample.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var isPinned = System.Convert.ToBoolean(value);
+            if (Device.RuntimePlatform != Device.UWP)
+                return default(FileImageSource);
 
+            var isPinned = System.Convert.ToBoolean(value);
             if (isPinned)
                 return ImageSource.FromFile("UnpinIcon.png");
             else
