@@ -1,27 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Xamarin.Forms.Platform.UWP;
 
 namespace AppShortcutsSample.UWP
 {
-    public sealed partial class MainPage
+    public sealed partial class MainPage : WindowsPage
     {
+        App _formsApp;
+
         public MainPage()
         {
             this.InitializeComponent();
 
-            LoadApplication(new AppShortcutsSample.App());
+            _formsApp = new App();
+
+            LoadApplication(_formsApp);
+        }
+
+        public void OnLaunchedEvent(string arguments)
+        {
+            if (!string.IsNullOrEmpty(arguments))
+            {
+                var parts = arguments.Split("||", StringSplitOptions.RemoveEmptyEntries);
+                _formsApp.SendOnAppLinkRequestReceived(new Uri(parts[1]));
+            }
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            OnLaunchedEvent(e.Parameter.ToString());
         }
     }
 }
