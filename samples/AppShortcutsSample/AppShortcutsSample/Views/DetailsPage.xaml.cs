@@ -12,6 +12,10 @@ namespace AppShortcutsSample.Views
         {
             InitializeComponent();
             BindingContext = new DetailsViewModel(monkey);
+            MessagingCenter.Subscribe<DetailsViewModel, string>(this, "ErrorDialog", (sender, args) =>
+            {
+                DisplayAlert("Error", args, "OK");
+            });
         }
     }
 }

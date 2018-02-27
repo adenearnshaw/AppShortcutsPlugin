@@ -9,7 +9,8 @@
               ItemTapped="MonkeyListItemTapped"
               ItemSelected="MonkeyListItemSelected"
               HasUnevenRows="true"
-              SeparatorColor="#BCD6F5">
+              SeparatorColor="#BCD6F5"
+              BackgroundColor="Transparent">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

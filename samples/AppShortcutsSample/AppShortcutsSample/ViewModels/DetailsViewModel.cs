@@ -1,41 +1,53 @@
 ﻿using AppShortcutsSample.Models;
-using Plugin.AppShortcuts;
-using Plugin.AppShortcuts.Abstractions;
+using AppShortcutsSample.Services;
+using MvvmHelpers;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AppShortcutsSample.ViewModels
 {
-    public class DetailsViewModel
+    public class DetailsViewModel : BaseViewModel
     {
-        private readonly bool _isPinningSupported;
-
         public DetailsViewModel(Monkey monkey)
         {
             Monkey = monkey;
-            _isPinningSupported = CrossAppShortcuts.IsSupported;
-
-            PinMonkeyCommand = new Command(PinMonkey, () => _isPinningSupported);
+            PinMonkeyCommand = new Command(PinMonkey, () => CanPinMonkeys);
+            CheckIfPinned();
         }
 
+        public bool CanPinMonkeys => PinMonkeyService.Instance.CanPinMonkeys;
         public Monkey Monkey { get; private set; }
+
+        private bool _isMonkeyPinned;
+        public bool IsMonkeyPinned
+        {
+            get => _isMonkeyPinned;
+            private set => SetProperty(ref _isMonkeyPinned, value);
+        }
+
         public ICommand PinMonkeyCommand { get; private set; }
 
 
+        private async void CheckIfPinned()
+        {
+            IsMonkeyPinned = await PinMonkeyService.Instance.IsMonkeyPinned(Monkey.Id);
+        }
+
         private async void PinMonkey()
         {
-            if (!CrossAppShortcuts.IsSupported)
-                return;
-
-            var shortcut = new Shortcut()
+            try
             {
-                Label = Monkey.Name,
-                Description = Monkey.Name,
-                Icon = ShortcutIconType.Favorite,
-                Uri = $"{App.AppShortcutUriBase}{Monkey.Id}"
-            };
+                if (!IsMonkeyPinned)
+                    await PinMonkeyService.Instance.PinMonkey(Monkey);
+                else
+                    await PinMonkeyService.Instance.UnpinMonkey(Monkey.Id);
 
-            await CrossAppShortcuts.Current.AddShortcut(shortcut);
+                CheckIfPinned();
+            }
+            catch (System.Exception)
+            {
+                MessagingCenter.Send(this, "ErrorDialog", "Sorry, cannot pin more than 4 monkeys.");
+            }
         }
     }
 }
