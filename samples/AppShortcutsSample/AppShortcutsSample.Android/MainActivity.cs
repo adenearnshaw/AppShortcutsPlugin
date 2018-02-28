@@ -6,16 +6,14 @@ using Plugin.AppShortcuts;
 
 namespace AppShortcutsSample.Droid
 {
-    [Activity(Label = "AppShortcutsSample",
-        Icon = "@drawable/icon",
-        Theme = "@style/MainTheme",
-        MainLauncher = true,
-        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "AppShortcuts Sample",
+              Theme = "@style/MainTheme",
+              ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     [IntentFilter(new[] { Intent.ActionView },
-        Categories = new[] { Intent.CategoryDefault },
-        DataScheme = "stc",
-        DataHost = "appshortcuts",
-        AutoVerify = true)]
+                  Categories = new[] { Intent.CategoryDefault },
+                  DataScheme = "stc",
+                  DataHost = "appshortcuts",
+                  AutoVerify = true)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
