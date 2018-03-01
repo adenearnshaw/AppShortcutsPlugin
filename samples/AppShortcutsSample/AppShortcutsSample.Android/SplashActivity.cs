@@ -1,18 +1,22 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Support.V7.App;
-using AppShortcutsSample.Droid;
 
-[Activity(Label = "AppShortcuts Sample",
-          Icon = "@drawable/AppIcon",
-          Theme = "@style/SplashTheme",
-          MainLauncher = true,
-          NoHistory = true)]
-public class SplashActivity : AppCompatActivity
+namespace AppShortcutsSample.Droid
 {
-    protected override void OnResume()
+
+    [Activity(Label = "AppShortcuts Sample",
+              Icon = "@drawable/app_icon",
+              RoundIcon = "@drawable/app_icon_round",
+              Theme = "@style/SplashTheme",
+              MainLauncher = true,
+              NoHistory = true)]
+    public class SplashActivity : AppCompatActivity
     {
-        base.OnResume();
-        StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+        protected override void OnResume()
+        {
+            base.OnResume();
+            StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+        }
     }
 }
