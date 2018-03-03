@@ -3,6 +3,7 @@ using AppShortcutsSample.Services;
 using MvvmHelpers;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace AppShortcutsSample.ViewModels
 {
@@ -28,13 +29,21 @@ namespace AppShortcutsSample.ViewModels
         public ICommand PinMonkeyCommand { get; private set; }
 
 
-        private async void CheckIfPinned()
+        private async Task CheckIfPinned()
         {
+            if (!CanPinMonkeys)
+                return;
+
             IsMonkeyPinned = await PinMonkeyService.Instance.IsMonkeyPinned(Monkey.Id);
         }
 
         private async void PinMonkey()
         {
+            IsBusy = true;
+
+            if (!CanPinMonkeys)
+                return;
+
             try
             {
                 if (!IsMonkeyPinned)
@@ -42,11 +51,18 @@ namespace AppShortcutsSample.ViewModels
                 else
                     await PinMonkeyService.Instance.UnpinMonkey(Monkey.Id);
 
-                CheckIfPinned();
+                if (Device.RuntimePlatform == Device.iOS)
+                    await Task.Delay(10);
+
+                await CheckIfPinned();
             }
             catch (System.Exception)
             {
                 MessagingCenter.Send(this, "ErrorDialog", "Sorry, cannot pin more than 4 monkeys.");
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
     }
