@@ -50,7 +50,7 @@ Height: 44px
 
 ---
 
-**To see this in the context of an app, please see the [sample](..\samples) provided**
+**To see this in the context of an app, please see the [sample](../samples) provided**
 
 ---
 <= Back to [Table of Contents](README.md)
