@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
     <id>Plugin.AppShortcuts</id>
-    <version>0.0.2-alpha5</version>
-    <title>Manage App Shortcuts for Xamarin and Windows</title>
+    <version>0.1.0-alpha</version>
+    <title>AppShortcuts Plugin for Xamarin and Windows</title>
     <authors>Aden Earnshaw</authors>
     <owners>Aden Earnshaw</owners>
     <licenseUrl>https://github.com/adenearnshaw/AppShortcutsPlugin/blob/master/LICENSE</licenseUrl>
@@ -13,8 +13,8 @@
     <description>
       Dynamically add and remove shortcuts to your app's icon so the user can deep-link into your app.
     </description>
-    <summary>AppShortcuts Plugin for Xamarin and Windows</summary>
-    <tags>xamarin, pcl, xam.pcl, maps, navigation, external maps, uwp, android, xamarin.forms, ios</tags>
+    <summary>Manage App Shortcuts for Xamarin and Windows</summary>
+    <tags>xamarin, pcl, xam.pcl, shortcuts, deeplink, jumplist, uwp, android, xamarin.forms, ios</tags>
     <dependencies>
        <group targetFramework="net">
       </group> 
