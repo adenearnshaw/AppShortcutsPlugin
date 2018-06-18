@@ -106,8 +106,8 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AppShortcutsImplementation.cs" />
-    <Compile Include="EmbeddedImageHelper.cs" />
+    <Compile Include="AppShortcuts.uwp.cs" />
+    <Compile Include="EmbeddedImageHelper.uwp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Plugin.AppShortcuts.UWP.rd.xml" />
   </ItemGroup>

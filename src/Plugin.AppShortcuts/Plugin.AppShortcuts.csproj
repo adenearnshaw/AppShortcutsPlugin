@@ -1,11 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.0;netstandard2.0;net45;MonoAndroid71;Xamarin.iOS10;uap10.0.10586;</TargetFrameworks>
+    <TargetFrameworks></TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid71;uap10.0.10586</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid71;</TargetFrameworks>
+    
     <AssemblyName>Plugin.AppShortcuts</AssemblyName>
     <RootNamespace>Plugin.AppShortcuts</RootNamespace>
     <Product>${AssemblyName} ($(TargetFramework))</Product>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.1.0-alpha</Version>
     <Authors>Aden Earnshaw</Authors>
     <PackageId>Plugin.AppShortcuts</PackageId>
@@ -25,6 +27,8 @@
     <LangVersion>default</LangVersion>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
 
+    <GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>
+    
     <DefineConstants>$(DefineConstants);</DefineConstants>
   </PropertyGroup>
 
@@ -36,6 +40,12 @@
     <DebugType>pdbonly</DebugType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" PrivateAssets="All" />
+    <Compile Include="**\*.shared.cs" />
+    <Compile Include="**\*.shared.*.cs" />
+  </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
   </ItemGroup>
@@ -51,11 +61,6 @@
     <Compile Include="**\*.uwp.cs" />
   </ItemGroup>
 
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
-    <Compile Include="**\*.desktop.cs" />
-    <Reference Include="mscorlib.dll" />
-  </ItemGroup>
-
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
     <Compile Include="**\*.android.cs" />
   </ItemGroup>
@@ -64,5 +69,12 @@
     <Compile Include="**\*.ios.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="IAppShortcuts.shared.cs" />
+    <None Remove="IPlatformSupport.shared.cs" />
+    <None Remove="NotSupportedOnDeviceException.shared.cs" />
+  </ItemGroup>
+
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+
 </Project>

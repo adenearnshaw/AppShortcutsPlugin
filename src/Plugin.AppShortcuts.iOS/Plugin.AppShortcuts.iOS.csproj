@@ -57,7 +57,7 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppShortcutsImplementation.cs" />
+    <Compile Include="AppShortcuts.ios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
