@@ -2,18 +2,27 @@
 
 namespace Plugin.AppShortcuts
 {
-    public class CrossAppShortcuts
+    /// <summary>
+    /// Cross Platform App Shortcuts
+    /// </summary>
+    public static class CrossAppShortcuts
     {
         static Lazy<IAppShortcuts> implementation
             = new Lazy<IAppShortcuts>(() => CreateAppShortcuts(), System.Threading.LazyThreadSafetyMode.PublicationOnly);
 
+        /// <summary>
+        /// Gets if the plugin is supported on the current platform.
+        /// </summary>
         public static bool IsSupported => (implementation?.Value as IPlatformSupport)?.IsSupportedByCurrentPlatformVersion ?? false;
 
+        /// <summary>
+        /// Current plugin implementation to use
+        /// </summary>
         public static IAppShortcuts Current
         {
             get
             {
-                var ret = implementation.Value;
+                IAppShortcuts ret = implementation.Value;
                 if (ret == null)
                 {
                     throw NotImplementedInReferenceAssembly();

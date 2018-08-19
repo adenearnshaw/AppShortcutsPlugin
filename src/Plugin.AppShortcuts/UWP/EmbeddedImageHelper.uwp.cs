@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
 
-namespace Plugin.AppShortcuts
+namespace Plugin.AppShortcuts.Uwp
 {
     public class EmbeddedImageHelper
     {

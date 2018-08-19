@@ -8,14 +8,14 @@
     <OutputType>Library</OutputType>
     <RootNamespace>AppShortcutsTests.Droid</RootNamespace>
     <AssemblyName>AppShortcutsTests.Android</AssemblyName>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -74,17 +74,13 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Plugin.AppShortcuts\Plugin.AppShortcuts.csproj">
+      <Project>{8953cdfb-bda6-4753-8da5-aa7bd00b942e}</Project>
+      <Name>Plugin.AppShortcuts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AppShortcutsTests\AppShortcutsTests.csproj">
       <Project>{0349403A-758D-41C6-B308-CA9F6B540E7B}</Project>
       <Name>AppShortcutsTests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj">
-      <Project>{AA4E04F0-3E7B-4E85-B1C6-8AC087662EF1}</Project>
-      <Name>Plugin.AppShortcuts.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Plugin.AppShortcuts.Android\Plugin.AppShortcuts.Android.csproj">
-      <Project>{51E4DB26-7D3B-4666-897C-FB58C89F084F}</Project>
-      <Name>Plugin.AppShortcuts.Android</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

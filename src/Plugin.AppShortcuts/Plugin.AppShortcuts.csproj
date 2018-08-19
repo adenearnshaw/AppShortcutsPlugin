@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks></TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid71;uap10.0.10586</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid71;</TargetFrameworks>
-    
+    <TargetFrameworks>netstandard2.0;Xamarin.iOS10</TargetFrameworks>
+    <!--<TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard2.0;Xamarin.iOS10;MonoAndroid81</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid81;uap10.0.10586</TargetFrameworks>-->
     <AssemblyName>Plugin.AppShortcuts</AssemblyName>
     <RootNamespace>Plugin.AppShortcuts</RootNamespace>
-    <Product>${AssemblyName} ($(TargetFramework))</Product>
-    <Version>0.1.0-alpha</Version>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+    <Version>0.1.1-alpha</Version>
     <Authors>Aden Earnshaw</Authors>
     <PackageId>Plugin.AppShortcuts</PackageId>
     <PackOnBuild>true</PackOnBuild>
@@ -27,8 +26,6 @@
     <LangVersion>default</LangVersion>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
 
-    <GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>
-    
     <DefineConstants>$(DefineConstants);</DefineConstants>
   </PropertyGroup>
 
@@ -36,45 +33,43 @@
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
     <DebugType>pdbonly</DebugType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" PrivateAssets="All" />
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.6.47" PrivateAssets="All" />
+    <None Include="*.cs" />
+    <Compile Include="**\Common\*.cs" />
+    <Compile Include="**\Icons\*.cs" />
     <Compile Include="**\*.shared.cs" />
-    <Compile Include="**\*.shared.*.cs" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
+    <Compile Include="**\*.netstandard.cs" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('uap10.0')) ">
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="5.2.3" />
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
     <SDKReference Include="WindowsDesktop, Version=10.0.10586.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
     <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
-    <Compile Include="**\*.uwp.cs" />
+    <Compile Include="**\UWP\*.uwp.cs" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
-    <Compile Include="**\*.android.cs" />
+    <Compile Include="**\Android\*.android.cs" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
-    <Compile Include="**\*.ios.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="IAppShortcuts.shared.cs" />
-    <None Remove="IPlatformSupport.shared.cs" />
-    <None Remove="NotSupportedOnDeviceException.shared.cs" />
+    <Compile Include="**\iOS\*.ios.cs" />
   </ItemGroup>
 
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
-
 </Project>

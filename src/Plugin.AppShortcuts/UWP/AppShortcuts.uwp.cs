@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
 using Windows.UI.StartScreen;
+using Plugin.AppShortcuts.Uwp;
 
 namespace Plugin.AppShortcuts
 {
@@ -37,7 +38,7 @@ namespace Plugin.AppShortcuts
 
         public async Task AddShortcut(Shortcut shortcut)
         {
-            var jumplistItem = JumpListItem.CreateWithArguments($"{shortcut.ID}||{shortcut.Uri}", shortcut.Label);
+            var jumplistItem = JumpListItem.CreateWithArguments($"{shortcut.ShortcutId}||{shortcut.Uri}", shortcut.Label);
             jumplistItem.Description = shortcut.Description;
             jumplistItem.Logo = await GetIconUri(shortcut.Icon, shortcut.CustomIconName);
 

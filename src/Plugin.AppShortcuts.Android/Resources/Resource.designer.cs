@@ -11,7 +11,7 @@
 
 [assembly: global::Android.Runtime.ResourceDesignerAttribute("Plugin.AppShortcuts.Resource", IsApplication=false)]
 
-namespace Plugin.AppShortcuts
+namespace Plugin.AppShortcuts.Android
 {
 	
 	

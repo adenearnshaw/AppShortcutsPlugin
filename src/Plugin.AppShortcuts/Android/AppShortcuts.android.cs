@@ -4,6 +4,8 @@ using Android.Content.PM;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
+using Android.Runtime;
+using Plugin.AppShortcuts.Android;
 using Plugin.AppShortcuts.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -16,7 +18,8 @@ using Path = System.IO.Path;
 
 namespace Plugin.AppShortcuts
 {
-    public class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
+    [Preserve(AllMembers = true)]
+    public partial class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
     {
         private readonly string NOT_SUPPORTED_ERROR_MESSAGE = $"Operation not supported on Android API 24 or below. Use {nameof(CrossAppShortcuts)}.{nameof(CrossAppShortcuts.IsSupported)} to check if the current device supports this feature.";
 
@@ -118,7 +121,7 @@ namespace Plugin.AppShortcuts
         {
             var iconTypeString = iconType.ToString().ToLower();
             var iconName = $"ic_sc_{iconTypeString}";
-            var resourceId = 1; // TODO (int)(typeof(Plugin.AppShortcuts.Resource.Drawable).GetField(iconName)?.GetValue(null) ?? 0);
+            var resourceId = (int)(typeof(Plugin.AppShortcuts.Resource.Drawable).GetField(iconName)?.GetValue(null) ?? 0);
             var icon = Icon.CreateWithResource(Application.Context, resourceId);
             return icon;
         }

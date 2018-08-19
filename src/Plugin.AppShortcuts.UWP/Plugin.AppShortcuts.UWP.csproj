@@ -7,11 +7,11 @@
     <ProjectGuid>{56D5E807-7199-4AA9-B57F-4F7D48E7B97F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Plugin.AppShortcuts</RootNamespace>
-    <AssemblyName>Plugin.AppShortcuts</AssemblyName>
+    <RootNamespace>Plugin.AppShortcuts.UWP</RootNamespace>
+    <AssemblyName>Plugin.AppShortcuts.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17134.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -106,7 +106,6 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AppShortcuts.uwp.cs" />
     <Compile Include="EmbeddedImageHelper.uwp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Plugin.AppShortcuts.UWP.rd.xml" />
@@ -115,12 +114,6 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.6</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj">
-      <Project>{4aac8713-f344-4aa2-9206-a317f3ea43e2}</Project>
-      <Name>Plugin.AppShortcuts.Abstractions</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\icon_add_black.png" />
@@ -182,7 +175,12 @@
     <EmbeddedResource Include="Assets\icon_update_black.png" />
     <EmbeddedResource Include="Assets\icon_update_white.png" />
   </ItemGroup>
-  <Import Project="..\Plugin.AppShortcuts.Shared\Plugin.AppShortcuts.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\Plugin.AppShortcuts\Plugin.AppShortcuts.csproj">
+      <Project>{2c85920d-b430-4bbd-9c16-63dd93e6ea74}</Project>
+      <Name>Plugin.AppShortcuts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

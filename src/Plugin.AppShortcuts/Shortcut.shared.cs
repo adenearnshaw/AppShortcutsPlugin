@@ -1,4 +1,5 @@
 ﻿using System;
+using Plugin.AppShortcuts.Icons;
 
 namespace Plugin.AppShortcuts
 {
@@ -6,19 +7,20 @@ namespace Plugin.AppShortcuts
     {
         public Shortcut()
         {
-            ID = Guid.NewGuid().ToString();
+            ShortcutId = Guid.NewGuid().ToString();
         }
 
         internal Shortcut(string shortcutId)
         {
-            ID = shortcutId;
+            ShortcutId = shortcutId;
         }
 
-        public string ID { get; }
+        public string ShortcutId { get; }
         public string Label { get; set; }
         public string Description { get; set; }
-        public ShortcutIconType Icon { get; set; }
-        public string CustomIconName { get; set; }
+        public IShortcutIcon Icon { get; set; }
         public string Uri { get; set; }
+
+        internal bool IsEmbeddedIcon => Icon is EmbeddedIcon;
     }
 }

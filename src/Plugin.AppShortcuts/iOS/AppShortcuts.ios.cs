@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Foundation;
-using Plugin.AppShortcuts.Exceptions;
+using Plugin.AppShortcuts.iOS;
+using Plugin.AppShortcuts.Icons;
 using UIKit;
 
 namespace Plugin.AppShortcuts
 {
     [Preserve(AllMembers = true)]
-    public class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
+    internal partial class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
     {
         private const string SHORTCUT_URI_KEY = "ShortcutUri";
-        private readonly string NOT_SUPPORTED_ERROR_MESSAGE = $"Operation not supported on iOS 8 or below. Use {nameof(CrossAppShortcuts)}.{nameof(CrossAppShortcuts.IsSupported)} to check if the current device supports this feature.";
+        private readonly string NOT_SUPPORTED_ERROR_MESSAGE 
+            = $"Operation not supported on iOS 8 or below. Use {nameof(CrossAppShortcuts)}.{nameof(CrossAppShortcuts.IsSupported)} to check if the current device supports this feature.";
 
+        private readonly IIconProvider _embeddedIconProvider;
+        private readonly IIconProvider _customIconProvider;
         private readonly bool _isShortcutsSupported;
 
         public AppShortcutsImplementation()
         {
+            _embeddedIconProvider = new EmbeddedIconProvider();
+            _customIconProvider = new CustomIconProvider();
             _isShortcutsSupported = UIDevice.CurrentDevice.CheckSystemVersion(9, 0);
         }
 
@@ -31,19 +37,19 @@ namespace Plugin.AppShortcuts
             if (!_isShortcutsSupported)
                 throw new NotSupportedOnDeviceException(NOT_SUPPORTED_ERROR_MESSAGE);
 
-            var type = shortcut.ID;
-            var icon = shortcut.Icon == ShortcutIconType.Custom
-                        ? await CreateCustomIcon(shortcut.CustomIconName)
-                        : await CreateIcon(shortcut.Icon);
+            var type = shortcut.ShortcutId;
+            var icon = shortcut.IsEmbeddedIcon
+                ? (UIApplicationShortcutIcon) (await _embeddedIconProvider.CreatePlatformIcon(shortcut.Icon))
+                : (UIApplicationShortcutIcon) (await _customIconProvider.CreatePlatformIcon(shortcut.Icon));
             var metadata = CreateUriMetadata(shortcut.Uri);
 
             new NSObject().BeginInvokeOnMainThread(() =>
             {
                 var scut = new UIMutableApplicationShortcutItem(type,
-                                                                shortcut.Label,
-                                                                shortcut.Description,
-                                                                icon,
-                                                                metadata);
+                    shortcut.Label,
+                    shortcut.Description,
+                    icon,
+                    metadata);
 
                 var scuts = UIApplication.SharedApplication.ShortcutItems.ToList();
                 scuts.Add(scut);
@@ -95,50 +101,83 @@ namespace Plugin.AppShortcuts
             var metadata = new NSDictionary<NSString, NSObject>(new NSString(SHORTCUT_URI_KEY), new NSString(uri));
             return metadata;
         }
-
-        private async Task<UIApplicationShortcutIcon> CreateIcon(ShortcutIconType iconType)
+        
+        private static Func<string, IShortcutIcon> ResolveShortcutIconType = iconName =>
         {
-            var isParseSuccessful = Enum.TryParse(iconType.ToString(), out UIApplicationShortcutIconType type);
+            var isParseSuccessful = Enum.TryParse(iconName, out ShortcutIconType type);
 
-            if (!isParseSuccessful)
-                type = UIApplicationShortcutIconType.Favorite;
+            if (isParseSuccessful)
+                return ResolveEmbeddedIcon(type);
 
-            UIApplicationShortcutIcon icon = null;
-            new NSObject().BeginInvokeOnMainThread(() =>
+            return new CustomIcon(iconName);
+        };
+
+        private static Func<ShortcutIconType, EmbeddedIcon> ResolveEmbeddedIcon = iconType =>
+        {
+            switch (iconType)
             {
-                icon = UIApplicationShortcutIcon.FromType(type);
-            });
-
-            await Task.Delay(200);
-
-            return icon;
-        }
-
-        private async Task<UIApplicationShortcutIcon> CreateCustomIcon(string assetName)
-        {
-            if (string.IsNullOrWhiteSpace(assetName))
-                return null;
-
-            UIApplicationShortcutIcon icon = null;
-            new NSObject().BeginInvokeOnMainThread(() =>
-            {
-                icon = UIApplicationShortcutIcon.FromTemplateImageName(assetName);
-            });
-
-            await Task.Delay(200);
-
-            return icon;
-        }
-
-        private Func<string, ShortcutIconType> ResolveShortcutIconType = iconName =>
-        {
-            ShortcutIconType type;
-            var isParseSuccessful = Enum.TryParse(iconName, out type);
-
-            if (!isParseSuccessful)
-                type = ShortcutIconType.Default;
-
-            return type;
+                case ShortcutIconType.Add:
+                    return new AddIcon();
+                case ShortcutIconType.Alarm:
+                    return new AlarmIcon();
+                case ShortcutIconType.Audio:
+                    return new AudioIcon();
+                case ShortcutIconType.Bookmark:
+                    return new BookmarkIcon();
+                case ShortcutIconType.CapturePhoto:
+                    return new CapturePhotoIcon();
+                case ShortcutIconType.CaptureVideo:
+                    return new CaptureVideoIcon();
+                case ShortcutIconType.Cloud:
+                    return new CloudIcon();
+                case ShortcutIconType.Compose:
+                    return new ComposeIcon();
+                case ShortcutIconType.Confirmation:
+                    return new ConfirmationIcon();
+                case ShortcutIconType.Contact:
+                    return new ContactIcon();
+                case ShortcutIconType.Date:
+                    return new DateIcon();
+                case ShortcutIconType.Favorite:
+                    return new FavoriteIcon();
+                case ShortcutIconType.Home:
+                    return new HomeIcon();
+                case ShortcutIconType.Invitation:
+                    return new InvitationIcon();
+                case ShortcutIconType.Location:
+                    return new LocationIcon();
+                case ShortcutIconType.Love:
+                    return new LoveIcon();
+                case ShortcutIconType.Mail:
+                    return new MailIcon();
+                case ShortcutIconType.MarkLocation:
+                    return new MarkLocationIcon();
+                case ShortcutIconType.Message:
+                    return new MessageIcon();
+                case ShortcutIconType.Pause:
+                    return new PauseIcon();
+                case ShortcutIconType.Play:
+                    return new PlayIcon();
+                case ShortcutIconType.Prohibit:
+                    return new ProhibitIcon();
+                case ShortcutIconType.Search:
+                    return new SearchIcon();
+                case ShortcutIconType.Share:
+                    return new ShareIcon();
+                case ShortcutIconType.Shuffle:
+                    return new ShuffleIcon();
+                case ShortcutIconType.Task:
+                    return new TaskIcon();
+                case ShortcutIconType.TaskCompleted:
+                    return new TaskCompletedIcon();
+                case ShortcutIconType.Time:
+                    return new TimeIcon();
+                case ShortcutIconType.Update:
+                    return new UpdateIcon();
+                case ShortcutIconType.Default:
+                default:
+                    return new DefaultIcon();
+            }
         };
     }
 }

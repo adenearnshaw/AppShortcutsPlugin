@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Plugin.AppShortcuts.Exceptions
+namespace Plugin.AppShortcuts
 {
     public class NotSupportedOnDeviceException : Exception
     {

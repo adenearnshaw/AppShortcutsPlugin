@@ -1,6 +1,6 @@
-﻿namespace Plugin.AppShortcuts
+﻿namespace Plugin.AppShortcuts.Icons
 {
-    public enum ShortcutIconType
+    internal enum ShortcutIconType
     {
         Default       = 1,
         Add           = 2,
@@ -31,7 +31,6 @@
         Task          = 27,
         TaskCompleted = 28,
         Time          = 29,
-        Update        = 30,
-        Custom        = 99
+        Update        = 30
     }
 }

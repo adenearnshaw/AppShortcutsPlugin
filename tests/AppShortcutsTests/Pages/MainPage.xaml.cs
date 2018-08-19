@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Plugin.AppShortcuts;
-using Plugin.AppShortcuts.Abstractions;
 using Xamarin.Forms;
 
 namespace AppShortcutsTests.Pages
@@ -47,7 +46,7 @@ namespace AppShortcutsTests.Pages
         {
             var menuItem = (MenuItem)sender;
             var sc = (Shortcut)menuItem.CommandParameter;
-            await CrossAppShortcuts.Current.RemoveShortcut(sc.ID);
+            await CrossAppShortcuts.Current.RemoveShortcut(sc.ShortcutId);
             await RefreshShortcutsList();
         }
 
