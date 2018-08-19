@@ -1,28 +1,28 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Plugin.AppShortcuts.Android;
-using Plugin.AppShortcuts.Exceptions;
+using Plugin.AppShortcuts.Icons;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using AUri = Android.Net.Uri;
-using Path = System.IO.Path;
 
 namespace Plugin.AppShortcuts
 {
     [Preserve(AllMembers = true)]
-    public partial class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
+    internal class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
     {
         private readonly string NOT_SUPPORTED_ERROR_MESSAGE = $"Operation not supported on Android API 24 or below. Use {nameof(CrossAppShortcuts)}.{nameof(CrossAppShortcuts.IsSupported)} to check if the current device supports this feature.";
 
+        private readonly IIconProvider _embeddedIconProvider;
+        private readonly IIconProvider _customIconProvider;
         private readonly ShortcutManager _manager;
         private readonly bool _isShortcutsSupported;
 
@@ -30,6 +30,8 @@ namespace Plugin.AppShortcuts
 
         public AppShortcutsImplementation()
         {
+            _embeddedIconProvider = new EmbeddedIconProvider();
+            _customIconProvider = new CustomIconProvider();
             _manager = (ShortcutManager)Application.Context.GetSystemService(Context.ShortcutService);
 
             _isShortcutsSupported = Build.VERSION.SdkInt >= BuildVersionCodes.NMr1;
@@ -40,6 +42,7 @@ namespace Plugin.AppShortcuts
         public void Init()
         {
             _drawableClass = Assembly.GetCallingAssembly().GetTypes().FirstOrDefault(x => x.Name == "Drawable" || x.Name == "Resource_Drawable");
+            (_customIconProvider as CustomIconProvider)?.Init(_drawableClass);
         }
 
         public bool IsSupportedByCurrentPlatformVersion => _isShortcutsSupported;
@@ -49,10 +52,9 @@ namespace Plugin.AppShortcuts
             if (!_isShortcutsSupported)
                 throw new NotSupportedOnDeviceException(NOT_SUPPORTED_ERROR_MESSAGE);
 
-            await Task.Run(() =>
-            {
+            
                 var context = Application.Context;
-                var builder = new ShortcutInfo.Builder(context, shortcut.ID);
+                var builder = new ShortcutInfo.Builder(context, shortcut.ShortcutId);
 
                 var uri = AUri.Parse(shortcut.Uri);
 
@@ -60,7 +62,7 @@ namespace Plugin.AppShortcuts
                 builder.SetShortLabel(shortcut.Label);
                 builder.SetLongLabel(shortcut.Description);
 
-                var icon = CreateIcon(shortcut.Icon, shortcut.CustomIconName);
+                var icon = await CreateIcon(shortcut.Icon);
                 if (icon != null)
                     builder.SetIcon(icon);
 
@@ -70,7 +72,7 @@ namespace Plugin.AppShortcuts
                     _manager.SetDynamicShortcuts(new List<ShortcutInfo> { scut });
                 else
                     _manager.AddDynamicShortcuts(new List<ShortcutInfo> { scut });
-            });
+            
         }
 
         public async Task<List<Shortcut>> GetShortcuts()
@@ -102,64 +104,20 @@ namespace Plugin.AppShortcuts
             });
         }
 
-        private Icon CreateIcon(ShortcutIconType iconType, string iconName)
+        private async Task<Icon> CreateIcon(IShortcutIcon icon)
         {
             try
             {
-                if (iconType == ShortcutIconType.Custom)
-                    return CreateIconFromCustomImage(iconName);
+                if (icon is CustomIcon)
+                    return await _customIconProvider.CreatePlatformIcon(icon) as Icon;
 
-                return CreateIconFromDefaultSet(iconType);
+                return await _embeddedIconProvider.CreatePlatformIcon(icon) as Icon;
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error(nameof(AppShortcutsImplementation), ex.Message, ex);
                 return null;
             }
-        }
-
-        private Icon CreateIconFromDefaultSet(ShortcutIconType iconType)
-        {
-            var iconTypeString = iconType.ToString().ToLower();
-            var iconName = $"ic_sc_{iconTypeString}";
-            var resourceId = (int)(typeof(Plugin.AppShortcuts.Resource.Drawable).GetField(iconName)?.GetValue(null) ?? 0);
-            var icon = Icon.CreateWithResource(Application.Context, resourceId);
-            return icon;
-        }
-
-        private Icon CreateIconFromCustomImage(string iconName)
-        {
-            if (File.Exists(iconName))
-            {
-                var bitmap = BitmapFactory.DecodeFile(iconName);
-
-                if (bitmap != null)
-                    return null;
-
-                return Icon.CreateWithBitmap(bitmap);
-            }
-            else
-            {
-                var resourceId = IdFromTitle(iconName);
-                var ic = Icon.CreateWithResource(Application.Context, resourceId);
-                return ic;
-            }
-        }
-
-        private int IdFromTitle(string title)
-        {
-            string name = Path.GetFileNameWithoutExtension(title);
-            int id = GetId(name);
-            return id;
-        }
-
-        private int GetId(string memberName)
-        {
-            var type = _drawableClass;
-            object value = type.GetFields().FirstOrDefault(p => p.Name == memberName)?.GetValue(type)
-                ?? type.GetProperties().FirstOrDefault(p => p.Name == memberName)?.GetValue(type);
-            if (value is int)
-                return (int)value;
-            return 0;
         }
     }
 }

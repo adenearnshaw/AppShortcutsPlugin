@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;Xamarin.iOS10</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;MonoAndroid81</TargetFrameworks>
     <!--<TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard2.0;Xamarin.iOS10;MonoAndroid81</TargetFrameworks>
     <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid81;uap10.0.10586</TargetFrameworks>-->
     <AssemblyName>Plugin.AppShortcuts</AssemblyName>
@@ -63,8 +63,48 @@
     <Compile Include="**\UWP\*.uwp.cs" />
   </ItemGroup>
 
+  <PropertyGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <OutputType>Library</OutputType>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+  </PropertyGroup>
+
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
     <Compile Include="**\Android\*.android.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_add.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_alarm.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_audio.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_bookmark.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_capturephoto.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_capturevideo.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_cloud.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_compose.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_confirmation.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_contact.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_date.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_default.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_favorite.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_home.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_invitation.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_location.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_love.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_mail.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_marklocation.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_message.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_pause.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_play.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_prohibit.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_search.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_share.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_shuffle.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_task.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_taskcompleted.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_time.xml" />
+    <AndroidResource Include="Resources\drawable\ic_sc_update.xml" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">

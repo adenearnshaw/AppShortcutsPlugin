@@ -10,7 +10,7 @@ using UIKit;
 namespace Plugin.AppShortcuts
 {
     [Preserve(AllMembers = true)]
-    internal partial class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
+    internal class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
     {
         private const string SHORTCUT_URI_KEY = "ShortcutUri";
         private readonly string NOT_SUPPORTED_ERROR_MESSAGE 
