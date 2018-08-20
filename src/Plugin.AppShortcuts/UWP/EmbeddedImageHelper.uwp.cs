@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
 
-namespace Plugin.AppShortcuts.Uwp
+namespace Plugin.AppShortcuts.UWP
 {
     public class EmbeddedImageHelper
     {
@@ -25,8 +25,13 @@ namespace Plugin.AppShortcuts.Uwp
         public async Task<Uri> CopyEmbeddedImageToAppData(string fileName)
         {
             var assembly = this.GetType().GetTypeInfo().Assembly;
-            var fullyQualifiedName = $"Plugin.AppShortcuts.Assets.{fileName}";
+            var fullyQualifiedName = $"Plugin.AppShortcuts.UWP.Assets.{fileName}";
             var imageStream = assembly.GetManifestResourceStream(fullyQualifiedName);
+
+            if (imageStream == null)
+            {
+                return null;
+            }
 
             var filePath = await SaveStreamToAppData(fileName, imageStream);
 

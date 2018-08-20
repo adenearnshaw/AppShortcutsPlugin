@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;MonoAndroid81</TargetFrameworks>
-    <!--<TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard2.0;Xamarin.iOS10;MonoAndroid81</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid81;uap10.0.10586</TargetFrameworks>-->
+    <TargetFrameworks></TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid81</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid81;uap10.0.10586</TargetFrameworks>
     <AssemblyName>Plugin.AppShortcuts</AssemblyName>
     <RootNamespace>Plugin.AppShortcuts</RootNamespace>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
@@ -61,6 +61,35 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
     <Compile Include="**\UWP\*.uwp.cs" />
+    <EmbeddedResource Include="UWP\Assets\icon_add_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_alarm_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_audio_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_bookmark_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_capturephoto_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_capturevideo_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_cloud_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_compose_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_confirmation_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_contact_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_date_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_favorite_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_home_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_invitation_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_location_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_love_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_mail_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_marklocation_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_message_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_pause_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_play_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_prohibit_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_search_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_share_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_shuffle_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_taskcompleted_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_task_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_time_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_update_white.png" />
   </ItemGroup>
 
   <PropertyGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
@@ -74,7 +103,6 @@
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
     <Compile Include="**\Android\*.android.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
-    <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable\ic_sc_add.xml" />
     <AndroidResource Include="Resources\drawable\ic_sc_alarm.xml" />
     <AndroidResource Include="Resources\drawable\ic_sc_audio.xml" />

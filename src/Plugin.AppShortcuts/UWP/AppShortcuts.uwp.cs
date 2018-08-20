@@ -4,43 +4,35 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
 using Windows.UI.StartScreen;
-using Plugin.AppShortcuts.Uwp;
+using Plugin.AppShortcuts.Icons;
+using Plugin.AppShortcuts.UWP;
 
 namespace Plugin.AppShortcuts
 {
     public class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
     {
-        private const string DarkIconUriFormat = "icon_{0}_white.png";
-        private const string LightIconUriFormat = "icon_{0}_black.png";
-
-        private readonly EmbeddedImageHelper _embeddedImageHelper;
-
-        private bool _isSupported;
-        private WindowsTheme _windowsTheme = WindowsTheme.Dark;
-
-
+        private readonly IIconProvider _embeddedIconProvider;
+        private readonly IIconProvider _customIconProvider;
+        
         public AppShortcutsImplementation()
         {
-            _isSupported = ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 2) && JumpList.IsSupported();
+            IsSupportedByCurrentPlatformVersion = ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 2) && JumpList.IsSupported();
 
-            _embeddedImageHelper = new EmbeddedImageHelper();
-
-            //var uisettings = new Windows.UI.ViewManagement.UISettings();
-            //var color = uisettings.GetColorValue(Windows.UI.ViewManagement.UIColorType.Foreground);
-            //_windowsTheme = color == Colors.Black ? WindowsTheme.Dark : WindowsTheme.Light;
+            _embeddedIconProvider = new EmbeddedIconProvider();
+            _customIconProvider = new CustomIconProvider();
         }
 
         public void Init()
         {
         }
 
-        public bool IsSupportedByCurrentPlatformVersion => _isSupported;
+        public bool IsSupportedByCurrentPlatformVersion { get; }
 
         public async Task AddShortcut(Shortcut shortcut)
         {
             var jumplistItem = JumpListItem.CreateWithArguments($"{shortcut.ShortcutId}||{shortcut.Uri}", shortcut.Label);
             jumplistItem.Description = shortcut.Description;
-            jumplistItem.Logo = await GetIconUri(shortcut.Icon, shortcut.CustomIconName);
+            jumplistItem.Logo = await GetIconUri(shortcut.Icon);
 
             var jumplist = await JumpList.LoadCurrentAsync();
             jumplist.Items.Add(jumplistItem);
@@ -59,7 +51,7 @@ namespace Plugin.AppShortcuts
                 {
                     Label = i.DisplayName,
                     Description = i.Description,
-                    Icon = ShortcutIconType.Default,
+                    Icon = new DefaultIcon(),
                     Uri = args[1]
                 };
                 return sc;
@@ -80,39 +72,12 @@ namespace Plugin.AppShortcuts
             await jumplist.SaveAsync();
         }
 
-        private async Task<Uri> GetIconUri(ShortcutIconType iconType, string fileName = "")
+        private async Task<Uri> GetIconUri(IShortcutIcon shortcutIcon)
         {
-            if (iconType == ShortcutIconType.Custom)
-                return GetCustomIconUri(fileName);
+            if (shortcutIcon is CustomIcon)
+                return await _customIconProvider.CreatePlatformIcon(shortcutIcon) as Uri;
 
-            return await GetEmbeddedIconUri(iconType);
-        }
-
-        private Uri GetCustomIconUri(string fileName)
-        {
-            var uri = $"ms-appx:///{fileName}";
-            return new Uri(uri);
-        }
-
-        private async Task<Uri> GetEmbeddedIconUri(ShortcutIconType iconType)
-        {
-            var iconName = iconType.ToString().ToLower();
-            string iconFileName;
-
-            if (_windowsTheme == WindowsTheme.Dark)
-                iconFileName = string.Format(DarkIconUriFormat, iconName);
-            else
-                iconFileName = string.Format(LightIconUriFormat, iconName);
-
-            var uri = await _embeddedImageHelper.CopyEmbeddedImageToAppData(iconFileName);
-            return uri;
-        }
-
-
-        enum WindowsTheme
-        {
-            Dark,
-            Light
+            return await _embeddedIconProvider.CreatePlatformIcon(shortcutIcon) as Uri;
         }
     }
 }
