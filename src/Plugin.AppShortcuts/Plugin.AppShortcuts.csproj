@@ -72,6 +72,7 @@
     <EmbeddedResource Include="UWP\Assets\icon_confirmation_white.png" />
     <EmbeddedResource Include="UWP\Assets\icon_contact_white.png" />
     <EmbeddedResource Include="UWP\Assets\icon_date_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_default_white.png" />
     <EmbeddedResource Include="UWP\Assets\icon_favorite_white.png" />
     <EmbeddedResource Include="UWP\Assets\icon_home_white.png" />
     <EmbeddedResource Include="UWP\Assets\icon_invitation_white.png" />
