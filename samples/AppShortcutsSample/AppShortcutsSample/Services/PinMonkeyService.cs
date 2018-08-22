@@ -1,9 +1,9 @@
 ﻿using AppShortcutsSample.Data;
 using AppShortcutsSample.Models;
 using Plugin.AppShortcuts;
-using Plugin.AppShortcuts.Abstractions;
 using System.Linq;
 using System.Threading.Tasks;
+using Plugin.AppShortcuts.Icons;
 
 namespace AppShortcutsSample.Services
 {
@@ -29,7 +29,7 @@ namespace AppShortcutsSample.Services
                 return false;
 
             var shorcuts = await CrossAppShortcuts.Current.GetShortcuts();
-            var monkeyShortcut = shorcuts.FirstOrDefault(s => s.ID.Equals(monkey.ShortcutId));
+            var monkeyShortcut = shorcuts.FirstOrDefault(s => s.ShortcutId.Equals(monkey.ShortcutId));
 
             return monkeyShortcut != null;
         }
@@ -43,12 +43,12 @@ namespace AppShortcutsSample.Services
             {
                 Label = monkey.Name,
                 Description = monkey.Name,
-                Icon = ShortcutIconType.Favorite,
+                Icon = new FavoriteIcon(),
                 Uri = $"{App.AppShortcutUriBase}{monkey.Id}"
             };
 
             await CrossAppShortcuts.Current.AddShortcut(shortcut);
-            MonkeyStore.Instance.UpdateMonkeyShortcutId(monkey.Id, shortcut.ID);
+            MonkeyStore.Instance.UpdateMonkeyShortcutId(monkey.Id, shortcut.ShortcutId);
         }
 
         public async Task UnpinMonkey(string monkeyId)

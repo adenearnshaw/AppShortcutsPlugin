@@ -1,7 +1,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppShortcutsSample.Views.MainPage"
-             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              BackgroundColor="#3B4653"
              Title="Monkeys">
 
@@ -36,6 +36,7 @@
                                               Grid.RowSpan="2"
                                               Source="{Binding Image}" />
                         <Label Grid.Column="1"
+                               Grid.Row="0"
                                Text="{Binding Name}"
                                VerticalOptions="End"
                                TextColor="#FFF5A623"/>
