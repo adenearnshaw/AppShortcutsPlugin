@@ -6,7 +6,7 @@ using Plugin.AppShortcuts.Icons;
 
 namespace Plugin.AppShortcuts.Android
 {
-    public class EmbeddedIconProvider : IIconProvider
+    internal class EmbeddedIconProvider : IIconProvider
     {
         public async Task<object> CreatePlatformIcon(IShortcutIcon shortcutIcon)
         {

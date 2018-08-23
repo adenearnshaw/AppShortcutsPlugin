@@ -10,7 +10,7 @@ using Path = System.IO.Path;
 
 namespace Plugin.AppShortcuts.Android
 {
-    public class CustomIconProvider : IIconProvider
+    internal class CustomIconProvider : IIconProvider
     {
         private Type _drawableClass;
 

@@ -12,7 +12,6 @@ namespace Plugin.AppShortcuts
     [Preserve(AllMembers = true)]
     internal class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
     {
-        private const string SHORTCUT_URI_KEY = "ShortcutUri";
         private readonly string NOT_SUPPORTED_ERROR_MESSAGE 
             = $"Operation not supported on iOS 8 or below. Use {nameof(CrossAppShortcuts)}.{nameof(CrossAppShortcuts.IsSupported)} to check if the current device supports this feature.";
 
@@ -68,7 +67,7 @@ namespace Plugin.AppShortcuts
             {
                 Label = ds.LocalizedTitle,
                 Description = ds.LocalizedSubtitle,
-                Uri = ds?.UserInfo[SHORTCUT_URI_KEY]?.ToString() ?? string.Empty,
+                Uri = ds?.UserInfo[ArgumentsHelper.ShortcutUriKey]?.ToString() ?? string.Empty,
                 Icon = ResolveShortcutIconType(ds?.Icon?.ToString() ?? string.Empty)
             }).ToList();
 
@@ -98,7 +97,7 @@ namespace Plugin.AppShortcuts
 
         private NSDictionary<NSString, NSObject> CreateUriMetadata(string uri)
         {
-            var metadata = new NSDictionary<NSString, NSObject>(new NSString(SHORTCUT_URI_KEY), new NSString(uri));
+            var metadata = new NSDictionary<NSString, NSObject>(new NSString(ArgumentsHelper.ShortcutUriKey), new NSString(uri));
             return metadata;
         }
         

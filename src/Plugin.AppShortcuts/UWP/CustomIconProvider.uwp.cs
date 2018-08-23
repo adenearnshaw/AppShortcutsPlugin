@@ -4,10 +4,8 @@ using Plugin.AppShortcuts.Icons;
 
 namespace Plugin.AppShortcuts.UWP
 {
-    public class CustomIconProvider : IIconProvider
+    internal class CustomIconProvider : IIconProvider
     {
-        
-
         public async Task<object> CreatePlatformIcon(IShortcutIcon shortcutIcon)
         {
             return await Task.Run(() =>

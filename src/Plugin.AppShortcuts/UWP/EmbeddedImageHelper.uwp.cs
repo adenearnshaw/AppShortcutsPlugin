@@ -7,7 +7,7 @@ using Windows.Storage;
 
 namespace Plugin.AppShortcuts.UWP
 {
-    public class EmbeddedImageHelper
+    internal class EmbeddedImageHelper
     {
         private StorageFolder _appDataAssetsFolder;
 

@@ -7,7 +7,7 @@
     <AssemblyName>Plugin.AppShortcuts</AssemblyName>
     <RootNamespace>Plugin.AppShortcuts</RootNamespace>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
-    <Version>0.1.1-alpha</Version>
+    <Version>0.1.1-alpha3</Version>
     <Authors>Aden Earnshaw</Authors>
     <PackageId>Plugin.AppShortcuts</PackageId>
     <PackOnBuild>true</PackOnBuild>

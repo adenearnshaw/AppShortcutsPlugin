@@ -3,7 +3,7 @@ using Plugin.AppShortcuts.Icons;
 
 namespace Plugin.AppShortcuts.UWP
 {
-    public class EmbeddedIconProvider : IIconProvider
+    internal class EmbeddedIconProvider : IIconProvider
     {
         private const string DarkIconUriFormat = "icon_{0}_white.png";
 

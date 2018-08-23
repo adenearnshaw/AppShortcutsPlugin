@@ -2,7 +2,7 @@
 
 namespace Plugin.AppShortcuts.Icons
 {
-    public interface IIconProvider
+    internal interface IIconProvider
     {
         Task<object> CreatePlatformIcon(IShortcutIcon shortcutIcon);
     }
