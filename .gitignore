@@ -104,6 +104,9 @@ _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
+# MFractor
+.mfractor/
+
 # JustCode is a .NET coding add-in
 .JustCode
 

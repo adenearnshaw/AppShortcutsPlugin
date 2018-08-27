@@ -1,5 +1,4 @@
 ﻿using Foundation;
-using System;
 using UIKit;
 
 namespace AppShortcutsSample.iOS
@@ -27,10 +26,10 @@ namespace AppShortcutsSample.iOS
 
         public override void PerformActionForShortcutItem(UIApplication application, UIApplicationShortcutItem shortcutItem, UIOperationHandler completionHandler)
         {
-            if (shortcutItem.UserInfo.ContainsKey(new NSString("ShortcutUri")))
+            var uri = Plugin.AppShortcuts.iOS.ArgumentsHelper.GetUriFromApplicationShortcutItem(shortcutItem);
+            if (uri != null)
             {
-                var shortcutUri = shortcutItem.UserInfo["ShortcutUri"].ToString();
-                Xamarin.Forms.Application.Current.SendOnAppLinkRequestReceived(new Uri(shortcutUri));
+                Xamarin.Forms.Application.Current.SendOnAppLinkRequestReceived(uri);
             }
         }
     }

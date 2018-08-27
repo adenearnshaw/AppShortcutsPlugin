@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Plugin.AppShortcuts;
-using Plugin.AppShortcuts.Abstractions;
+using Plugin.AppShortcuts.Icons;
 using Xamarin.Forms;
 
 namespace AppShortcutsTests.Pages
@@ -23,52 +22,52 @@ namespace AppShortcutsTests.Pages
             switch (tag)
             {
                 case 1:
-                    await AddShortcut(ShortcutIconType.Add);
-                    await AddShortcut(ShortcutIconType.Alarm);
-                    await AddShortcut(ShortcutIconType.Audio);
-                    await AddShortcut(ShortcutIconType.Bookmark);
+                    await AddShortcut(new AddIcon());
+                    await AddShortcut(new AlarmIcon());
+                    await AddShortcut(new AudioIcon());
+                    await AddShortcut(new BookmarkIcon());
                     break;
                 case 2:
-                    await AddShortcut(ShortcutIconType.CapturePhoto);
-                    await AddShortcut(ShortcutIconType.CaptureVideo);
-                    await AddShortcut(ShortcutIconType.Cloud);
-                    await AddShortcut(ShortcutIconType.Compose);
+                    await AddShortcut(new CapturePhotoIcon());
+                    await AddShortcut(new CaptureVideoIcon());
+                    await AddShortcut(new CloudIcon());
+                    await AddShortcut(new ComposeIcon());
 
                     break;
                 case 3:
-                    await AddShortcut(ShortcutIconType.Confirmation);
-                    await AddShortcut(ShortcutIconType.Contact);
-                    await AddShortcut(ShortcutIconType.Date);
-                    await AddShortcut(ShortcutIconType.Favorite);
+                    await AddShortcut(new ConfirmationIcon());
+                    await AddShortcut(new ContactIcon());
+                    await AddShortcut(new DateIcon());
+                    await AddShortcut(new FavoriteIcon());
 
                     break;
                 case 4:
-                    await AddShortcut(ShortcutIconType.Home);
-                    await AddShortcut(ShortcutIconType.Invitation);
-                    await AddShortcut(ShortcutIconType.Location);
-                    await AddShortcut(ShortcutIconType.Love);
+                    await AddShortcut(new HomeIcon());
+                    await AddShortcut(new InvitationIcon());
+                    await AddShortcut(new LocationIcon());
+                    await AddShortcut(new LoveIcon());
                     break;
                 case 5:
-                    await AddShortcut(ShortcutIconType.Mail);
-                    await AddShortcut(ShortcutIconType.MarkLocation);
-                    await AddShortcut(ShortcutIconType.Message);
-                    await AddShortcut(ShortcutIconType.Pause);
+                    await AddShortcut(new MailIcon());
+                    await AddShortcut(new MarkLocationIcon());
+                    await AddShortcut(new MessageIcon());
+                    await AddShortcut(new PauseIcon());
                     break;
                 case 6:
-                    await AddShortcut(ShortcutIconType.Play);
-                    await AddShortcut(ShortcutIconType.Prohibit);
-                    await AddShortcut(ShortcutIconType.Search);
-                    await AddShortcut(ShortcutIconType.Share);
+                    await AddShortcut(new PlayIcon());
+                    await AddShortcut(new ProhibitIcon());
+                    await AddShortcut(new SearchIcon());
+                    await AddShortcut(new ShareIcon());
                     break;
                 case 7:
-                    await AddShortcut(ShortcutIconType.Shuffle);
-                    await AddShortcut(ShortcutIconType.Task);
-                    await AddShortcut(ShortcutIconType.TaskCompleted);
-                    await AddShortcut(ShortcutIconType.Time);
+                    await AddShortcut(new ShuffleIcon());
+                    await AddShortcut(new TaskIcon());
+                    await AddShortcut(new TaskCompletedIcon());
+                    await AddShortcut(new TimeIcon());
                     break;
                 case 8:
-                    await AddShortcut(ShortcutIconType.Update);
-                    await AddShortcut(ShortcutIconType.Default);
+                    await AddShortcut(new UpdateIcon());
+                    await AddShortcut(new DefaultIcon());
                     await AddCustomShortcut("ic_beach.png");
                     break;
             }
@@ -86,18 +85,18 @@ namespace AppShortcutsTests.Pages
             var currentShortcuts = await CrossAppShortcuts.Current.GetShortcuts();
             foreach (var sc in currentShortcuts)
             {
-                await CrossAppShortcuts.Current.RemoveShortcut(sc.ID);
+                await CrossAppShortcuts.Current.RemoveShortcut(sc.ShortcutId);
             }
         }
 
-        private async Task AddShortcut(ShortcutIconType iconType)
+        private async Task AddShortcut(IShortcutIcon icon)
         {
             var sc = new Shortcut
             {
-                Icon = iconType,
-                Label = $"{iconType}_L",
-                Description = $"{iconType}_D",
-                Uri = $"stc://AppShortcutTests/Tests/{iconType}"
+                Icon = icon,
+                Label = $"{icon.IconName}_L",
+                Description = $"{icon.IconName}_D",
+                Uri = $"stc://AppShortcutTests/Tests/{icon.IconName}"
             };
             await CrossAppShortcuts.Current.AddShortcut(sc);
         }
@@ -106,11 +105,10 @@ namespace AppShortcutsTests.Pages
         {
             var sc = new Shortcut
             {
-                Icon = ShortcutIconType.Custom,
+                Icon = new CustomIcon(iconName),
                 Label = $"{iconName}_L",
                 Description = $"{iconName}_D",
-                Uri = $"stc://AppShortcutTests/Tests/{iconName}",
-                CustomIconName = iconName
+                Uri = $"stc://AppShortcutTests/Tests/{iconName}"
             };
             await CrossAppShortcuts.Current.AddShortcut(sc);
         }

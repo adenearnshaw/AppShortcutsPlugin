@@ -56,7 +56,6 @@ namespace AppShortcutsTests.Droid
 			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_taskcompleted = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_taskcompleted;
 			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_time = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_time;
 			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_update = global::AppShortcutsTests.Droid.Resource.Drawable.ic_sc_update;
-			global::Plugin.AppShortcuts.Resource.String.library_name = global::AppShortcutsTests.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::AppShortcutsTests.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -3850,9 +3849,6 @@ namespace AppShortcutsTests.Droid
 			
 			// aapt resource value: 0x7f090038
 			public const int character_counter_pattern = 2131296312;
-			
-			// aapt resource value: 0x7f09003e
-			public const int library_name = 2131296318;
 			
 			// aapt resource value: 0x7f090000
 			public const int mr_button_content_description = 2131296256;

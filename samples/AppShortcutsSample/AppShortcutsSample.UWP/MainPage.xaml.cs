@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Plugin.AppShortcuts.UWP;
 using Windows.UI.Xaml.Navigation;
 using Xamarin.Forms.Platform.UWP;
 
@@ -22,8 +22,8 @@ namespace AppShortcutsSample.UWP
         {
             if (!string.IsNullOrEmpty(arguments))
             {
-                var parts = arguments.Split("||", StringSplitOptions.RemoveEmptyEntries);
-                Xamarin.Forms.Application.Current.SendOnAppLinkRequestReceived(new Uri(parts[1]));
+                var argsUri = JumplistArgumentsHelper.GetUriFromJumplistArguments(arguments);
+                Xamarin.Forms.Application.Current.SendOnAppLinkRequestReceived(argsUri);
             }
         }
     }

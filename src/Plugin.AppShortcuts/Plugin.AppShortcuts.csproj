@@ -1,11 +1,140 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="MSBuild.Sdk.Extras/1.6.47">
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFrameworks></TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid71;uap10.0.10586</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard1.0;netstandard2.0;Xamarin.iOS10;MonoAndroid71</TargetFrameworks>
+    <AssemblyName>Plugin.AppShortcuts</AssemblyName>
+    <RootNamespace>Plugin.AppShortcuts</RootNamespace>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+    <Version>0.1.1-alpha3</Version>
+    <Authors>Aden Earnshaw</Authors>
+    <PackageId>Plugin.AppShortcuts</PackageId>
+    <PackOnBuild>true</PackOnBuild>
+    <Summary>Manage App Shortcuts for Xamarin and Windows</Summary>
+    <Title>AppShortcuts Plugin for Xamarin and Windows</Title>
+    <Description>Dynamically add and remove shortcuts to your app's icon so the user can deep-link into your app.</Description>
+    <Owners>Aden Earnshaw</Owners>
+    <Copyright>Copyright 2018</Copyright>
+    <PackageLicenseUrl>https://github.com/adenearnshaw/AppShortcutsPlugin/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/adenearnshaw/AppShortcutsPlugin</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/adenearnshaw/AppShortcutsPlugin/master/art/appshortcuts_icon.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/adenearnshaw/AppShortcutsPlugin</RepositoryUrl>
+    <PackageTags>xamarin, pcl, xam.pcl, shortcuts, deeplink, jumplist, uwp, android, xamarin.forms, ios</PackageTags>
+
+    <NeutralLanguage>en</NeutralLanguage>
+    <LangVersion>default</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+
+    <DefineConstants>$(DefineConstants);</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
+    <DebugType>pdbonly</DebugType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj" />
+    <Compile Include="**\Common\*.cs" />
+    <Compile Include="**\Icons\*.cs" />
+    <Compile Include="**\*.shared.cs" />
   </ItemGroup>
-  <Import Project="..\Plugin.AppShortcuts.Shared\Plugin.AppShortcuts.Shared.projitems" Label="Shared" Condition="Exists('..\Plugin.AppShortcuts.Shared\Plugin.AppShortcuts.Shared.projitems')" />
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
+    <Compile Include="**\*.netstandard.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('uap10.0')) ">
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
+    <SDKReference Include="WindowsDesktop, Version=10.0.10586.0">
+      <Name>Windows Desktop Extensions for the UWP</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+    <Compile Include="**\UWP\*.uwp.cs" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_add_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_alarm_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_audio_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_bookmark_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_capturephoto_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_capturevideo_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_cloud_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_compose_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_confirmation_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_contact_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_date_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_default_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_favorite_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_home_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_invitation_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_location_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_love_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_mail_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_marklocation_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_message_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_pause_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_play_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_prohibit_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_search_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_share_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_shuffle_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_taskcompleted_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_task_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_time_white.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_update_white.png" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <OutputType>Library</OutputType>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <Compile Include="**\Android\*.android.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_add.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_alarm.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_audio.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_bookmark.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_capturephoto.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_capturevideo.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_cloud.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_compose.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_confirmation.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_contact.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_date.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_default.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_favorite.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_home.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_invitation.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_location.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_love.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_mail.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_marklocation.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_message.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_pause.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_play.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_prohibit.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_search.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_share.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_shuffle.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_task.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_taskcompleted.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_time.xml" />
+    <AndroidResource Include="Resources\drawable\ic_plugin_sc_update.xml" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+    <Compile Include="**\iOS\*.ios.cs" />
+  </ItemGroup>
+
 </Project>

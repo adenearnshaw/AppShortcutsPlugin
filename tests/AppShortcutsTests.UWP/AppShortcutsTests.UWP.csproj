@@ -129,20 +129,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.6</Version>
+      <Version>6.1.7</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>2.5.0.280555</Version>
+      <Version>3.1.0.697729</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Plugin.AppShortcuts.Abstractions\Plugin.AppShortcuts.Abstractions.csproj">
-      <Project>{aa4e04f0-3e7b-4e85-b1c6-8ac087662ef1}</Project>
-      <Name>Plugin.AppShortcuts.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Plugin.AppShortcuts.UWP\Plugin.AppShortcuts.UWP.csproj">
-      <Project>{56d5e807-7199-4aa9-b57f-4f7d48e7b97f}</Project>
-      <Name>Plugin.AppShortcuts.UWP</Name>
+    <ProjectReference Include="..\..\src\Plugin.AppShortcuts\Plugin.AppShortcuts.csproj">
+      <Project>{8953cdfb-bda6-4753-8da5-aa7bd00b942e}</Project>
+      <Name>Plugin.AppShortcuts</Name>
     </ProjectReference>
     <ProjectReference Include="..\AppShortcutsTests\AppShortcutsTests.csproj">
       <Project>{0349403a-758d-41c6-b308-ca9f6b540e7b}</Project>
