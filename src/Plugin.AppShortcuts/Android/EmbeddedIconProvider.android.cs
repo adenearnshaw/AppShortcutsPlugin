@@ -11,7 +11,7 @@ namespace Plugin.AppShortcuts.Android
         public async Task<object> CreatePlatformIcon(IShortcutIcon shortcutIcon)
         {
             var iconTypeString = shortcutIcon.IconName.ToLower();
-            var iconName = $"ic_sc_{iconTypeString}";
+            var iconName = $"ic_plugin_sc_{iconTypeString}";
             var resourceId = (int)(typeof(Plugin.AppShortcuts.Resource.Drawable).GetField(iconName)?.GetValue(null) ?? 0);
             var icon = Icon.CreateWithResource(Application.Context, resourceId);
             return icon;
