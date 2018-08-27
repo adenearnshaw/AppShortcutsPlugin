@@ -7,7 +7,7 @@ Dynamically add and remove shortcuts to your app's icon so the user can deep-lin
 Get started by reading the [AppShortcuts Plugin documentation](https://adenearnshaw.github.io/AppShortcutsPlugin)  
 
 ### Build  
-[![Build status](https://saintchubs.visualstudio.com/AppShortcutsPlugin/_apis/build/status/AppShortcutsPlugin-CI)](https://saintchubs.visualstudio.com/AppShortcutsPlugin/_build/latest?definitionId=-1)  
+[![Build status](https://saintchubs.visualstudio.com/AppShortcutsPlugin/_apis/build/status/AppShortcutsPlugin-CI)](https://saintchubs.visualstudio.com/AppShortcutsPlugin/_build/latest?definitionId=21)   
 CI MyGet Feed: [https://www.myget.org/feed/adenearnshaw/package/nuget/Plugin.AppShortcuts](https://www.myget.org/feed/adenearnshaw/package/nuget/Plugin.AppShortcuts)  
 
 
