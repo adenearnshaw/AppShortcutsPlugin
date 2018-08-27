@@ -101,82 +101,14 @@ namespace Plugin.AppShortcuts
             return metadata;
         }
         
-        private static Func<string, IShortcutIcon> ResolveShortcutIconType = iconName =>
+        private static readonly Func<string, IShortcutIcon> ResolveShortcutIconType = iconName =>
         {
             var isParseSuccessful = Enum.TryParse(iconName, out ShortcutIconType type);
 
             if (isParseSuccessful)
-                return ResolveEmbeddedIcon(type);
+                return ShortcutIconTypesHelper.ResolveEmbeddedIcon(type);
 
             return new CustomIcon(iconName);
-        };
-
-        private static Func<ShortcutIconType, EmbeddedIcon> ResolveEmbeddedIcon = iconType =>
-        {
-            switch (iconType)
-            {
-                case ShortcutIconType.Add:
-                    return new AddIcon();
-                case ShortcutIconType.Alarm:
-                    return new AlarmIcon();
-                case ShortcutIconType.Audio:
-                    return new AudioIcon();
-                case ShortcutIconType.Bookmark:
-                    return new BookmarkIcon();
-                case ShortcutIconType.CapturePhoto:
-                    return new CapturePhotoIcon();
-                case ShortcutIconType.CaptureVideo:
-                    return new CaptureVideoIcon();
-                case ShortcutIconType.Cloud:
-                    return new CloudIcon();
-                case ShortcutIconType.Compose:
-                    return new ComposeIcon();
-                case ShortcutIconType.Confirmation:
-                    return new ConfirmationIcon();
-                case ShortcutIconType.Contact:
-                    return new ContactIcon();
-                case ShortcutIconType.Date:
-                    return new DateIcon();
-                case ShortcutIconType.Favorite:
-                    return new FavoriteIcon();
-                case ShortcutIconType.Home:
-                    return new HomeIcon();
-                case ShortcutIconType.Invitation:
-                    return new InvitationIcon();
-                case ShortcutIconType.Location:
-                    return new LocationIcon();
-                case ShortcutIconType.Love:
-                    return new LoveIcon();
-                case ShortcutIconType.Mail:
-                    return new MailIcon();
-                case ShortcutIconType.MarkLocation:
-                    return new MarkLocationIcon();
-                case ShortcutIconType.Message:
-                    return new MessageIcon();
-                case ShortcutIconType.Pause:
-                    return new PauseIcon();
-                case ShortcutIconType.Play:
-                    return new PlayIcon();
-                case ShortcutIconType.Prohibit:
-                    return new ProhibitIcon();
-                case ShortcutIconType.Search:
-                    return new SearchIcon();
-                case ShortcutIconType.Share:
-                    return new ShareIcon();
-                case ShortcutIconType.Shuffle:
-                    return new ShuffleIcon();
-                case ShortcutIconType.Task:
-                    return new TaskIcon();
-                case ShortcutIconType.TaskCompleted:
-                    return new TaskCompletedIcon();
-                case ShortcutIconType.Time:
-                    return new TimeIcon();
-                case ShortcutIconType.Update:
-                    return new UpdateIcon();
-                case ShortcutIconType.Default:
-                default:
-                    return new DefaultIcon();
-            }
         };
     }
 }
