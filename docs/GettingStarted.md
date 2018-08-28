@@ -1,7 +1,7 @@
 # Getting Started
 
 ## Setup
-* Nuget: [Plugin.AppShortcuts](http://www.nuget.org/)
+* Nuget: [Plugin.AppShortcuts](http://www.nuget.org/packages/Plugin.AppShortcuts)
 * `PM> Install-Package Plugin.AppShortcuts`
 * Install into the project where you'll be implementing the code and also each platform specific project.
 * Namespace: `using Plugin.AppShortcuts;`
@@ -19,11 +19,16 @@ For Android apps, the plugin needs some additional setup. In the `MainActivity.O
 To add a shortcut, first you need to create a new instance of the `Shortcut` class and populate it with the information you wish to pin.
 
 ```csharp
+using Plugin.AppShortcuts;
+using Plugin.AppShortcuts.Icons;
+
+...
+
 var shortcut = new Shortcut()
 {
     Label = "Shortcut 1",
     Description = "My shortcut",
-    Icon = ShortcutIconType.Favorite,
+    Icon = new FavoriteIcon(),
     Uri = "asc://AppShortcutsApp/Detail/shortcut_1_id"
 };
 ```
@@ -67,7 +72,7 @@ Each platform handles app shortcuts differently, click [here](Deeplinks.md) for 
 
 ---
 
-**To see this in the context of an app, please see the [sample](../samples) provided**
+**To see this in the context of an app, please see the [sample](https://github.com/adenearnshaw/AppShortcutsPlugin/tree/master/samples) provided**
 
 ---
 
