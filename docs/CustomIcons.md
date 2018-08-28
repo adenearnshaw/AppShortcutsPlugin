@@ -1,9 +1,9 @@
 # Using your own icons
 
 
-The plugin provides a default set of icons based upon the default Quick Action Icons supplied by Apple ([Human Interface Guidelines](https://developer.apple.com/ios/human-interface-guidelines/icons-and-images/system-icons#home-screen-quick-action-icons)), which can be selected using the ShortcutIconType enum.
+The plugin provides a default set of icons based upon the default Quick Action Icons supplied by Apple ([Human Interface Guidelines](https://developer.apple.com/ios/human-interface-guidelines/icons-and-images/system-icons#home-screen-quick-action-icons)), all of which have been mapped and come built into the plugin for use on all platforms under the `Plugin.AppShortcuts.Icons` namespace.
 
-If these icons don't fit your needs, or don't quite match your color scheme, you can supply your own bespoke images. Select `ShortcutIconType.Custom` and provide the image file name, exactly as you would with any other local image file.
+If these icons don't fit your needs, or don't quite match your color scheme, you can supply your own bespoke images. Use the `CustomIcon` class and provide the image file name, exactly as you would with any other local image file into the constructor.
 
 [Local images in Xamarin Forms](https://developer.xamarin.com/guides/xamarin-forms/user-interface/images/#Local_Images)
 
@@ -50,7 +50,7 @@ Height: 44px
 
 ---
 
-**To see this in the context of an app, please see the [sample](../samples) provided**
+**To see this in the context of an app, please see the [sample](https://github.com/adenearnshaw/AppShortcutsPlugin/tree/master/samples) provided**
 
 ---
 <= Back to [Table of Contents](README.md)

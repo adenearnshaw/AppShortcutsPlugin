@@ -26,36 +26,36 @@ namespace AppShortcutsSample.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_add = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_add;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_alarm = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_alarm;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_audio = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_audio;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_bookmark = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_bookmark;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_capturephoto = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_capturephoto;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_capturevideo = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_capturevideo;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_cloud = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_cloud;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_compose = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_compose;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_confirmation = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_confirmation;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_contact = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_contact;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_date = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_date;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_default = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_default;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_favorite = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_favorite;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_home = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_home;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_invitation = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_invitation;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_location = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_location;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_love = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_love;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_mail = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_mail;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_marklocation = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_marklocation;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_message = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_message;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_pause = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_pause;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_play = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_play;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_prohibit = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_prohibit;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_search = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_search;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_share = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_share;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_shuffle = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_shuffle;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_task = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_task;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_taskcompleted = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_taskcompleted;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_time = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_time;
-			global::Plugin.AppShortcuts.Resource.Drawable.ic_sc_update = global::AppShortcutsSample.Droid.Resource.Drawable.ic_sc_update;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_add = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_add;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_alarm = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_alarm;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_audio = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_audio;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_bookmark = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_bookmark;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_capturephoto = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_capturephoto;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_capturevideo = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_capturevideo;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_cloud = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_cloud;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_compose = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_compose;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_confirmation = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_confirmation;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_contact = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_contact;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_date = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_date;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_default = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_default;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_favorite = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_favorite;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_home = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_home;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_invitation = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_invitation;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_location = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_location;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_love = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_love;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_mail = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_mail;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_marklocation = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_marklocation;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_message = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_message;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_pause = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_pause;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_play = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_play;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_prohibit = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_prohibit;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_search = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_search;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_share = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_share;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_shuffle = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_shuffle;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_task = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_task;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_taskcompleted = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_taskcompleted;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_time = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_time;
+			global::Plugin.AppShortcuts.Resource.Drawable.ic_plugin_sc_update = global::AppShortcutsSample.Droid.Resource.Drawable.ic_plugin_sc_update;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::AppShortcutsSample.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -2703,94 +2703,94 @@ namespace AppShortcutsSample.Droid
 			public const int ic_mr_button_grey = 2130837737;
 			
 			// aapt resource value: 0x7f0200ea
-			public const int ic_sc_add = 2130837738;
+			public const int ic_plugin_sc_add = 2130837738;
 			
 			// aapt resource value: 0x7f0200eb
-			public const int ic_sc_alarm = 2130837739;
+			public const int ic_plugin_sc_alarm = 2130837739;
 			
 			// aapt resource value: 0x7f0200ec
-			public const int ic_sc_audio = 2130837740;
+			public const int ic_plugin_sc_audio = 2130837740;
 			
 			// aapt resource value: 0x7f0200ed
-			public const int ic_sc_bookmark = 2130837741;
+			public const int ic_plugin_sc_bookmark = 2130837741;
 			
 			// aapt resource value: 0x7f0200ee
-			public const int ic_sc_capturephoto = 2130837742;
+			public const int ic_plugin_sc_capturephoto = 2130837742;
 			
 			// aapt resource value: 0x7f0200ef
-			public const int ic_sc_capturevideo = 2130837743;
+			public const int ic_plugin_sc_capturevideo = 2130837743;
 			
 			// aapt resource value: 0x7f0200f0
-			public const int ic_sc_cloud = 2130837744;
+			public const int ic_plugin_sc_cloud = 2130837744;
 			
 			// aapt resource value: 0x7f0200f1
-			public const int ic_sc_compose = 2130837745;
+			public const int ic_plugin_sc_compose = 2130837745;
 			
 			// aapt resource value: 0x7f0200f2
-			public const int ic_sc_confirmation = 2130837746;
+			public const int ic_plugin_sc_confirmation = 2130837746;
 			
 			// aapt resource value: 0x7f0200f3
-			public const int ic_sc_contact = 2130837747;
+			public const int ic_plugin_sc_contact = 2130837747;
 			
 			// aapt resource value: 0x7f0200f4
-			public const int ic_sc_date = 2130837748;
+			public const int ic_plugin_sc_date = 2130837748;
 			
 			// aapt resource value: 0x7f0200f5
-			public const int ic_sc_default = 2130837749;
+			public const int ic_plugin_sc_default = 2130837749;
 			
 			// aapt resource value: 0x7f0200f6
-			public const int ic_sc_favorite = 2130837750;
+			public const int ic_plugin_sc_favorite = 2130837750;
 			
 			// aapt resource value: 0x7f0200f7
-			public const int ic_sc_home = 2130837751;
+			public const int ic_plugin_sc_home = 2130837751;
 			
 			// aapt resource value: 0x7f0200f8
-			public const int ic_sc_invitation = 2130837752;
+			public const int ic_plugin_sc_invitation = 2130837752;
 			
 			// aapt resource value: 0x7f0200f9
-			public const int ic_sc_location = 2130837753;
+			public const int ic_plugin_sc_location = 2130837753;
 			
 			// aapt resource value: 0x7f0200fa
-			public const int ic_sc_love = 2130837754;
+			public const int ic_plugin_sc_love = 2130837754;
 			
 			// aapt resource value: 0x7f0200fb
-			public const int ic_sc_mail = 2130837755;
+			public const int ic_plugin_sc_mail = 2130837755;
 			
 			// aapt resource value: 0x7f0200fc
-			public const int ic_sc_marklocation = 2130837756;
+			public const int ic_plugin_sc_marklocation = 2130837756;
 			
 			// aapt resource value: 0x7f0200fd
-			public const int ic_sc_message = 2130837757;
+			public const int ic_plugin_sc_message = 2130837757;
 			
 			// aapt resource value: 0x7f0200fe
-			public const int ic_sc_pause = 2130837758;
+			public const int ic_plugin_sc_pause = 2130837758;
 			
 			// aapt resource value: 0x7f0200ff
-			public const int ic_sc_play = 2130837759;
+			public const int ic_plugin_sc_play = 2130837759;
 			
 			// aapt resource value: 0x7f020100
-			public const int ic_sc_prohibit = 2130837760;
+			public const int ic_plugin_sc_prohibit = 2130837760;
 			
 			// aapt resource value: 0x7f020101
-			public const int ic_sc_search = 2130837761;
+			public const int ic_plugin_sc_search = 2130837761;
 			
 			// aapt resource value: 0x7f020102
-			public const int ic_sc_share = 2130837762;
+			public const int ic_plugin_sc_share = 2130837762;
 			
 			// aapt resource value: 0x7f020103
-			public const int ic_sc_shuffle = 2130837763;
+			public const int ic_plugin_sc_shuffle = 2130837763;
 			
 			// aapt resource value: 0x7f020104
-			public const int ic_sc_task = 2130837764;
+			public const int ic_plugin_sc_task = 2130837764;
 			
 			// aapt resource value: 0x7f020105
-			public const int ic_sc_taskcompleted = 2130837765;
+			public const int ic_plugin_sc_taskcompleted = 2130837765;
 			
 			// aapt resource value: 0x7f020106
-			public const int ic_sc_time = 2130837766;
+			public const int ic_plugin_sc_time = 2130837766;
 			
 			// aapt resource value: 0x7f020107
-			public const int ic_sc_update = 2130837767;
+			public const int ic_plugin_sc_update = 2130837767;
 			
 			// aapt resource value: 0x7f020108
 			public const int ic_vol_type_speaker_dark = 2130837768;

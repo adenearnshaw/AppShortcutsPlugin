@@ -31,10 +31,10 @@ iOS will automatically launch the app from a shortcut, however, the `FormsApplic
 ```csharp
 public override void PerformActionForShortcutItem(UIApplication application, UIApplicationShortcutItem shortcutItem, UIOperationHandler completionHandler)
 {
-    if (shortcutItem.UserInfo.ContainsKey(new NSString("ShortcutUri")))
+    var uri = Plugin.AppShortcuts.iOS.ArgumentsHelper.GetUriFromApplicationShortcutItem(shortcutItem);
+    if (uri != null)
     {
-        var shortcutUri = shortcutItem.UserInfo["ShortcutUri"].ToString();
-        Xamarin.Forms.Application.Current.SendOnAppLinkRequestReceived(new Uri(shortcutUri));
+        Xamarin.Forms.Application.Current.SendOnAppLinkRequestReceived(uri);
     }
 }
 ``` 
@@ -44,9 +44,9 @@ public override void PerformActionForShortcutItem(UIApplication application, UIA
 
 Similar to iOS, a UWP app will launch the app when the shortcut is clicked, but needs some additional setup to pass the Uri back to the Forms `App` class.
 
-A restriction of UWP is that its implementation of shortcuts doesn't provide the ability to set multiple properties. In order for The Plugin to overcome this, the shortcut's ID and Uri are concatenated by a double pipe.
+A restriction of UWP is that its implementation of shortcuts doesn't provide the ability to set multiple properties. In order for The Plugin to overcome this, the shortcut's ID and Uri are serialized into a JSON object.
 
-Firstly, in the UWP `MainPage` add a method to split the NavigationArgs and pass this to the Forms `App`. Then override the `OnNavigatedTo()` to call it. Your UWP `MainPage` should look similar to this:
+Firstly, in the UWP `MainPage` call the helper method to split the NavigationArgs and pass this to the Forms `App`. Then override the `OnNavigatedTo()` to call it. Your UWP `MainPage` should look similar to this:
 
 ```csharp
 public sealed partial class MainPage : WindowsPage
@@ -67,8 +67,8 @@ public sealed partial class MainPage : WindowsPage
         {
             if (!string.IsNullOrEmpty(arguments))
             {
-                var parts = arguments.Split("||", StringSplitOptions.RemoveEmptyEntries);
-                Xamarin.Forms.Application.Current.SendOnAppLinkRequestReceived(new Uri(parts[1]));
+                var argsUri = JumplistArgumentsHelper.GetUriFromJumplistArguments(arguments);
+                Xamarin.Forms.Application.Current.SendOnAppLinkRequestReceived(argsUri);
             }
         }
     }
@@ -96,7 +96,7 @@ protected override void OnLaunched(LaunchActivatedEventArgs e)
 
 ---
 
-**To see this in the context of an app, please see the [sample](../samples) provided**
+**To see this in the context of an app, please see the [sample](https://github.com/adenearnshaw/AppShortcutsPlugin/tree/master/samples) provided**
 
 ---
 <= Back to [Table of Contents](README.md)
