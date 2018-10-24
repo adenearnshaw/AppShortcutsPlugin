@@ -7,3 +7,4 @@ Here you'll find information on how to consume the AppShortcuts Plugin for Xamar
 * [Handling deeplinks](Deeplinks.md)
 * [Custom icons](CustomIcons.md)
 * [Handling exceptions](HandlingExceptions.md)
+* [Testing](Testing.md)
