@@ -8,7 +8,7 @@
 
   <Identity
     Name="a3fd8102-6a13-4496-94a9-3bdff43cfbac"
-    Publisher="CN=aearn"
+    Publisher="CN=AdenEarnshaw"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="a3fd8102-6a13-4496-94a9-3bdff43cfbac" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>

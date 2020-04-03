@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppShortcutsSample.Android", "AppShortcutsSample\AppShortcutsSample.Android\AppShortcutsSample.Android.csproj", "{2AF458AE-24E2-42DB-BDA8-667997CF3752}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppShortcutsSample.iOS", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppShortcutsSample.UWP", "AppShortcutsSample\AppShortcutsSample.UWP\AppShortcutsSample.UWP.csproj", "{2DAFFDB7-AD42-4EB9-9ACB-272DEB125F23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppShortcutsSample", "AppShortcutsSample\AppShortcutsSample\AppShortcutsSample.csproj", "{3AC46653-D3A9-4ECC-83AC-26C792B4C5BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppShortcutsSample", "AppShortcutsSample\AppShortcutsSample\AppShortcutsSample.csproj", "{3AC46653-D3A9-4ECC-83AC-26C792B4C5BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
