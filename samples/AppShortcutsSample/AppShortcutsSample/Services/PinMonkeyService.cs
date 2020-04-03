@@ -29,9 +29,7 @@ namespace AppShortcutsSample.Services
                 return false;
 
             var shorcuts = await CrossAppShortcuts.Current.GetShortcuts();
-            var monkeyShortcut = shorcuts.FirstOrDefault(s => s.ShortcutId.Equals(monkey.ShortcutId));
-
-            return monkeyShortcut != null;
+            return shorcuts.Any(s => s.Label.Equals(monkey.Name));
         }
 
         public async Task PinMonkey(Monkey monkey)
