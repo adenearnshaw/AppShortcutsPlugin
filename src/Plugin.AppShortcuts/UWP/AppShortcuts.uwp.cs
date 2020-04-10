@@ -30,7 +30,7 @@ namespace Plugin.AppShortcuts
 
         public async Task AddShortcut(Shortcut shortcut)
         {
-            var args = JumplistArgumentsHelper.GetSerializedArguments(shortcut.ShortcutId, shortcut.Uri);
+            var args = JumplistArgumentsHelper.GetSerializedArguments(shortcut.ShortcutId, shortcut.Uri, shortcut.Tag);
             var jumplistItem = JumpListItem.CreateWithArguments(args, shortcut.Label);
             jumplistItem.Description = shortcut.Description;
             jumplistItem.Logo = await GetIconUri(shortcut.Icon);
@@ -53,7 +53,8 @@ namespace Plugin.AppShortcuts
                     Label = i.DisplayName,
                     Description = i.Description,
                     Icon = new DefaultIcon(),
-                    Uri = args.Uri
+                    Uri = args.Uri,
+                    Tag = args.Tag
                 };
                 return sc;
             }).ToList();

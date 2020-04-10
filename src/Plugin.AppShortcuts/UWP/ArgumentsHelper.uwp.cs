@@ -25,12 +25,13 @@ namespace Plugin.AppShortcuts.UWP
             return new Uri(args.Uri);
         }
 
-        internal static string GetSerializedArguments(string shortcutId, string uri)
+        internal static string GetSerializedArguments(string shortcutId, string uri, string tag)
         {
             var args = new JumpListArguments
             {
                 ShortcutId = shortcutId,
-                Uri = uri
+                Uri = uri,
+                Tag = tag
             };
 
             using (var ms = new MemoryStream())
@@ -48,7 +49,7 @@ namespace Plugin.AppShortcuts.UWP
             if (json.Contains("||"))
             {
                 var parts = json.Split(new[] { "||" }, StringSplitOptions.RemoveEmptyEntries);
-                return new JumpListArguments(parts[0], parts[1]);
+                return new JumpListArguments(parts[0], parts[1], parts.Length == 3 ? parts[2] : null);
             }
 
             var args = new JumpListArguments();
@@ -65,16 +66,21 @@ namespace Plugin.AppShortcuts.UWP
         {
             [DataMember]
             public string ShortcutId { get; set; }
+            
+            [DataMember]
+            public string Tag { get; set; }
+            
             [DataMember]
             public string Uri { get; set; }
 
             public JumpListArguments()
             { }
 
-            public JumpListArguments(string shortcutId, string uri)
+            public JumpListArguments(string shortcutId, string uri, string tag)
             {
                 ShortcutId = shortcutId;
                 Uri = uri;
+                Tag = tag;
             }
         }
     }

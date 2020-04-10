@@ -20,6 +20,7 @@ namespace Plugin.AppShortcuts
         public string Description { get; set; }
         public IShortcutIcon Icon { get; set; }
         public string Uri { get; set; }
+        public string Tag { get; set; }
 
         internal bool IsEmbeddedIcon => Icon is EmbeddedIcon;
     }

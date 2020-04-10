@@ -39,6 +39,7 @@ namespace AppShortcutsTests.Pages
 
             TitleEntry.Text = _shortcut.Label;
             SubtitleEntry.Text = _shortcut.Description;
+            TagEntry.Text = _shortcut.Tag;
             IconTypePicker.SelectedItem = _shortcut.Icon.ToString();
             CustomIconEntry.Text = _shortcut.Icon.IconName;
         }
@@ -54,6 +55,7 @@ namespace AppShortcutsTests.Pages
 
             _shortcut.Label = TitleEntry.Text;
             _shortcut.Description = SubtitleEntry.Text;
+            _shortcut.Tag = TagEntry.Text;
             _shortcut.Icon = icon;
             _shortcut.Uri = $"stc://{nameof(AppShortcutsTests)}/{nameof(AddShortcutPage)}/{_shortcut.ShortcutId}";
 
