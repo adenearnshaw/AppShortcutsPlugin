@@ -4,7 +4,7 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Xamarin.Forms" Version="4.5.0.530" />
+		<PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Plugin.AppShortcuts\Plugin.AppShortcuts.csproj" />
