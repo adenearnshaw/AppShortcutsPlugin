@@ -1,11 +1,16 @@
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppShortcutsTests.Pages.AddShortcutPage">
+<ContentPage x:Class="AppShortcutsTests.Pages.AddShortcutPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ScrollView>
         <StackLayout Padding="20">
-            <Entry x:Name="TitleEntry" Placeholder="Title" />
-            <Entry x:Name="SubtitleEntry" Placeholder="Sub-title"/>
-            <Picker x:Name="IconTypePicker" Title="Icon Type">
+            <Entry x:Name="TitleEntry"
+                   Placeholder="Title" />
+            <Entry x:Name="SubtitleEntry"
+                   Placeholder="Subtitle" />
+            <Entry x:Name="TagEntry"
+                   Placeholder="Tag" />
+            <Picker x:Name="IconTypePicker"
+                    Title="Icon Type">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Default</x:String>
@@ -42,8 +47,11 @@
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
-            <Entry x:Name="CustomIconEntry" Placeholder="Custom Icon"/>
-            <Button x:Name="SubmitButton" Text="Add shortcut" Clicked="CreateNewShortcut"></Button>
+            <Entry x:Name="CustomIconEntry"
+                   Placeholder="Custom Icon" />
+            <Button x:Name="SubmitButton"
+                    Clicked="CreateNewShortcut"
+                    Text="Add shortcut" />
         </StackLayout>
     </ScrollView>
 </ContentPage>

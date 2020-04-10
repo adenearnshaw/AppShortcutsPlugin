@@ -96,7 +96,8 @@ namespace AppShortcutsTests.Pages
                 Icon = icon,
                 Label = $"{icon.IconName}_L",
                 Description = $"{icon.IconName}_D",
-                Uri = $"stc://AppShortcutTests/Tests/{icon.IconName}"
+                Uri = $"stc://AppShortcutTests/Tests/{icon.IconName}",
+                Tag = $"{icon.IconName}_T"
             };
             await CrossAppShortcuts.Current.AddShortcut(sc);
         }
@@ -108,7 +109,8 @@ namespace AppShortcutsTests.Pages
                 Icon = new CustomIcon(iconName),
                 Label = $"{iconName}_L",
                 Description = $"{iconName}_D",
-                Uri = $"stc://AppShortcutTests/Tests/{iconName}"
+                Uri = $"stc://AppShortcutTests/Tests/{iconName}",
+                Tag = $"{iconName}_T"
             };
             await CrossAppShortcuts.Current.AddShortcut(sc);
         }

@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.Content.PM;
 using Android.Graphics.Drawables;
+using Android.Nfc;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
@@ -19,8 +20,10 @@ namespace Plugin.AppShortcuts
     [Preserve(AllMembers = true)]
     internal class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
     {
-        private readonly string NOT_SUPPORTED_ERROR_MESSAGE = $"Operation not supported on Android API 24 or below. Use {nameof(CrossAppShortcuts)}.{nameof(CrossAppShortcuts.IsSupported)} to check if the current device supports this feature.";
+        private const string TagKey = "tag";
 
+        private readonly string NOT_SUPPORTED_ERROR_MESSAGE = $"Operation not supported on Android API 24 or below. Use {nameof(CrossAppShortcuts)}.{nameof(CrossAppShortcuts.IsSupported)} to check if the current device supports this feature.";
+        
         private readonly IIconProvider _embeddedIconProvider;
         private readonly IIconProvider _customIconProvider;
         private readonly ShortcutManager _manager;
@@ -53,25 +56,30 @@ namespace Plugin.AppShortcuts
                 throw new NotSupportedOnDeviceException(NOT_SUPPORTED_ERROR_MESSAGE);
 
             
-                var context = Application.Context;
-                var builder = new ShortcutInfo.Builder(context, shortcut.ShortcutId);
+            var context = Application.Context;
+            var builder = new ShortcutInfo.Builder(context, shortcut.ShortcutId);
 
-                var uri = AUri.Parse(shortcut.Uri);
+            var uri = AUri.Parse(shortcut.Uri);
 
-                builder.SetIntent(new Intent(Intent.ActionView, uri));
-                builder.SetShortLabel(shortcut.Label);
-                builder.SetLongLabel(shortcut.Description);
+            builder.SetIntent(new Intent(Intent.ActionView, uri));
+            builder.SetShortLabel(shortcut.Label);
+            builder.SetLongLabel(shortcut.Description);
 
-                var icon = await CreateIcon(shortcut.Icon);
-                if (icon != null)
-                    builder.SetIcon(icon);
+            var extrasBundle = new PersistableBundle();
+            extrasBundle.PutString(TagKey, shortcut.Tag);
+            builder.SetExtras(extrasBundle);
 
-                var scut = builder.Build();
+            var icon = await CreateIcon(shortcut.Icon);
 
-                if (_manager.DynamicShortcuts == null || !_manager.DynamicShortcuts.Any())
-                    _manager.SetDynamicShortcuts(new List<ShortcutInfo> { scut });
-                else
-                    _manager.AddDynamicShortcuts(new List<ShortcutInfo> { scut });
+            if (icon != null)
+                builder.SetIcon(icon);
+
+            var scut = builder.Build();
+
+            if (_manager.DynamicShortcuts == null || !_manager.DynamicShortcuts.Any())
+                _manager.SetDynamicShortcuts(new List<ShortcutInfo> { scut });
+            else
+                _manager.AddDynamicShortcuts(new List<ShortcutInfo> { scut });
             
         }
 
@@ -87,7 +95,8 @@ namespace Plugin.AppShortcuts
                 {
                     Label = s.ShortLabel,
                     Description = s.LongLabel,
-                    Uri = s.Intent.ToUri(IntentUriType.AllowUnsafe)
+                    Uri = s.Intent.ToUri(IntentUriType.AllowUnsafe),
+                    Tag = s.Extras.GetString(TagKey)
                 }).ToList();
                 return shortcuts;
             });

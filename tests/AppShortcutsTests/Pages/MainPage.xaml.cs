@@ -42,6 +42,15 @@ namespace AppShortcutsTests.Pages
             await Navigation.PushAsync(new TestShortcutsPage());
         }
 
+        public async void DeleteShortcuts(object sender, EventArgs args)
+        {
+            foreach (var sc in Shortcuts)
+            {
+                await CrossAppShortcuts.Current.RemoveShortcut(sc.ShortcutId);
+            }
+            await RefreshShortcutsList();
+        }
+
         public async void DeleteShortcut(object sender, EventArgs e)
         {
             var menuItem = (MenuItem)sender;

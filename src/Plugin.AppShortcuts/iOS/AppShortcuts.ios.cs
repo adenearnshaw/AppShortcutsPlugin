@@ -17,30 +17,29 @@ namespace Plugin.AppShortcuts
 
         private readonly IIconProvider _embeddedIconProvider;
         private readonly IIconProvider _customIconProvider;
-        private readonly bool _isShortcutsSupported;
 
         public AppShortcutsImplementation()
         {
             _embeddedIconProvider = new EmbeddedIconProvider();
             _customIconProvider = new CustomIconProvider();
-            _isShortcutsSupported = UIDevice.CurrentDevice.CheckSystemVersion(9, 0);
+            IsSupportedByCurrentPlatformVersion = UIDevice.CurrentDevice.CheckSystemVersion(9, 0);
         }
 
         public void Init()
         { }
 
-        public bool IsSupportedByCurrentPlatformVersion => _isShortcutsSupported;
+        public bool IsSupportedByCurrentPlatformVersion { get; }
 
         public async Task AddShortcut(Shortcut shortcut)
         {
-            if (!_isShortcutsSupported)
+            if (!IsSupportedByCurrentPlatformVersion)
                 throw new NotSupportedOnDeviceException(NOT_SUPPORTED_ERROR_MESSAGE);
 
             var type = shortcut.ShortcutId;
             var icon = shortcut.IsEmbeddedIcon
                 ? (UIApplicationShortcutIcon) (await _embeddedIconProvider.CreatePlatformIcon(shortcut.Icon))
                 : (UIApplicationShortcutIcon) (await _customIconProvider.CreatePlatformIcon(shortcut.Icon));
-            var metadata = CreateUriMetadata(shortcut.Uri);
+            var metadata = CreateMetadata(shortcut);
 
             new NSObject().BeginInvokeOnMainThread(() =>
             {
@@ -59,7 +58,7 @@ namespace Plugin.AppShortcuts
 
         public async Task<List<Shortcut>> GetShortcuts()
         {
-            if (!_isShortcutsSupported)
+            if (!IsSupportedByCurrentPlatformVersion)
                 throw new NotSupportedOnDeviceException(NOT_SUPPORTED_ERROR_MESSAGE);
 
             var dynamicShortcuts = UIApplication.SharedApplication.ShortcutItems.ToList();
@@ -67,6 +66,7 @@ namespace Plugin.AppShortcuts
             {
                 Label = ds.LocalizedTitle,
                 Description = ds.LocalizedSubtitle,
+                Tag = ds?.UserInfo[ArgumentsHelper.ShortcutTagKey]?.ToString() ?? string.Empty,
                 Uri = ds?.UserInfo[ArgumentsHelper.ShortcutUriKey]?.ToString() ?? string.Empty,
                 Icon = ResolveShortcutIconType(ds?.Icon?.ToString() ?? string.Empty)
             }).ToList();
@@ -78,7 +78,7 @@ namespace Plugin.AppShortcuts
 
         public async Task RemoveShortcut(string shortcutId)
         {
-            if (!_isShortcutsSupported)
+            if (!IsSupportedByCurrentPlatformVersion)
                 throw new NotSupportedOnDeviceException(NOT_SUPPORTED_ERROR_MESSAGE);
 
             new NSObject().BeginInvokeOnMainThread(() =>
@@ -95,9 +95,13 @@ namespace Plugin.AppShortcuts
             });
         }
 
-        private NSDictionary<NSString, NSObject> CreateUriMetadata(string uri)
+        private NSDictionary<NSString, NSObject> CreateMetadata(Shortcut shortcut)
         {
-            var metadata = new NSDictionary<NSString, NSObject>(new NSString(ArgumentsHelper.ShortcutUriKey), new NSString(uri));
+            var metadata = new NSDictionary<NSString, NSObject>();
+
+            metadata.SetValueForKey(new NSString(shortcut.Tag), new NSString(ArgumentsHelper.ShortcutTagKey));
+            metadata.SetValueForKey(new NSString(shortcut.Uri), new NSString(ArgumentsHelper.ShortcutUriKey));
+
             return metadata;
         }
         
