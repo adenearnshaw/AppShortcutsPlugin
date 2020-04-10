@@ -6,6 +6,8 @@ using Windows.Foundation.Metadata;
 using Windows.UI.StartScreen;
 using Plugin.AppShortcuts.Icons;
 using Plugin.AppShortcuts.UWP;
+using Windows.UI.Xaml;
+using Windows.UI;
 
 namespace Plugin.AppShortcuts
 {
@@ -17,6 +19,9 @@ namespace Plugin.AppShortcuts
         public AppShortcutsImplementation()
         {
             IsSupportedByCurrentPlatformVersion = ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 2) && JumpList.IsSupported();
+
+            //var uisettings = new Windows.UI.ViewManagement.UISettings();
+            //var color = uisettings.GetColorValue(Windows.UI.ViewManagement.UIColorType.Foreground);
 
             _embeddedIconProvider = new EmbeddedIconProvider();
             _customIconProvider = new CustomIconProvider();

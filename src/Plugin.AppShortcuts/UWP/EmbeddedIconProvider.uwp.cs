@@ -1,11 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Plugin.AppShortcuts.Icons;
 
 namespace Plugin.AppShortcuts.UWP
 {
     internal class EmbeddedIconProvider : IIconProvider
     {
-        private const string DarkIconUriFormat = "icon_plugin_{0}_white.png";
+        private const string DarkIconUriFormat = "icon_plugin_{0}.altform-unplated.png";
+        private const string LightIconUriFormat = "icon_plugin_{0}.altform-lightunplated.png";
 
         private readonly EmbeddedImageHelper _embeddedImageHelper;
 

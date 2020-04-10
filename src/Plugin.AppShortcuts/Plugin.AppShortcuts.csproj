@@ -90,6 +90,37 @@
     <EmbeddedResource Include="UWP\Assets\icon_plugin_task_white.png" />
     <EmbeddedResource Include="UWP\Assets\icon_plugin_time_white.png" />
     <EmbeddedResource Include="UWP\Assets\icon_plugin_update_white.png" />
+
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_add_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_alarm_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_audio_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_bookmark_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_capturephoto_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_capturevideo_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_cloud_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_compose_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_confirmation_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_contact_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_date_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_default_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_favorite_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_home_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_invitation_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_location_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_love_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_mail_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_marklocation_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_message_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_pause_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_play_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_prohibit_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_search_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_share_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_shuffle_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_taskcompleted_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_task_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_time_black.png" />
+    <EmbeddedResource Include="UWP\Assets\icon_plugin_update_black.png" />
   </ItemGroup>
 
   <PropertyGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
