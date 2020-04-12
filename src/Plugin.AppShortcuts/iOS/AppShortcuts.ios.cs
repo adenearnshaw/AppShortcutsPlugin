@@ -97,10 +97,17 @@ namespace Plugin.AppShortcuts
 
         private NSDictionary<NSString, NSObject> CreateMetadata(Shortcut shortcut)
         {
-            var metadata = new NSDictionary<NSString, NSObject>();
-
-            metadata.SetValueForKey(new NSString(shortcut.Tag), new NSString(ArgumentsHelper.ShortcutTagKey));
-            metadata.SetValueForKey(new NSString(shortcut.Uri), new NSString(ArgumentsHelper.ShortcutUriKey));
+            var metadata = new NSDictionary<NSString, NSObject>(
+                new[]
+                {
+                    new NSString(ArgumentsHelper.ShortcutTagKey),
+                    new NSString(ArgumentsHelper.ShortcutUriKey)
+                },
+                new[]
+                {
+                    new NSString(shortcut.Tag ?? string.Empty),
+                    new NSString(shortcut.Uri)
+                });
 
             return metadata;
         }
