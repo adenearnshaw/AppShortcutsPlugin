@@ -61,7 +61,7 @@ namespace AppShortcutsTests.Pages
 
             await CrossAppShortcuts.Current.AddShortcut(_shortcut);
 
-            Navigation.PopAsync();
+            await Navigation.PopAsync();
         }
 
         private static Func<string, IShortcutIcon> ResolveEmbeddedIcon = iconType =>

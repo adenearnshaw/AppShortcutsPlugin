@@ -6,13 +6,14 @@ using Foundation;
 using Plugin.AppShortcuts.iOS;
 using Plugin.AppShortcuts.Icons;
 using UIKit;
+using AuthenticationServices;
 
 namespace Plugin.AppShortcuts
 {
     [Preserve(AllMembers = true)]
     internal class AppShortcutsImplementation : IAppShortcuts, IPlatformSupport
     {
-        private readonly string NOT_SUPPORTED_ERROR_MESSAGE 
+        private readonly string NOT_SUPPORTED_ERROR_MESSAGE
             = $"Operation not supported on iOS 8 or below. Use {nameof(CrossAppShortcuts)}.{nameof(CrossAppShortcuts.IsSupported)} to check if the current device supports this feature.";
 
         private readonly IIconProvider _embeddedIconProvider;
@@ -37,11 +38,11 @@ namespace Plugin.AppShortcuts
 
             var type = shortcut.ShortcutId;
             var icon = shortcut.IsEmbeddedIcon
-                ? (UIApplicationShortcutIcon) (await _embeddedIconProvider.CreatePlatformIcon(shortcut.Icon))
-                : (UIApplicationShortcutIcon) (await _customIconProvider.CreatePlatformIcon(shortcut.Icon));
+                ? (UIApplicationShortcutIcon)(await _embeddedIconProvider.CreatePlatformIcon(shortcut.Icon))
+                : (UIApplicationShortcutIcon)(await _customIconProvider.CreatePlatformIcon(shortcut.Icon));
             var metadata = CreateMetadata(shortcut);
 
-            new NSObject().BeginInvokeOnMainThread(() =>
+            NSRunLoop.Main.BeginInvokeOnMainThread(() =>
             {
                 var scut = new UIMutableApplicationShortcutItem(type,
                     shortcut.Label,
@@ -81,17 +82,20 @@ namespace Plugin.AppShortcuts
             if (!IsSupportedByCurrentPlatformVersion)
                 throw new NotSupportedOnDeviceException(NOT_SUPPORTED_ERROR_MESSAGE);
 
-            new NSObject().BeginInvokeOnMainThread(() =>
+            await Task.Run(() =>
             {
-                var shortcutItem =
-                    UIApplication.SharedApplication.ShortcutItems.FirstOrDefault(si => si.Type.Equals(shortcutId));
+                NSRunLoop.Main.BeginInvokeOnMainThread(() =>
+                {
+                    var shortcutItem =
+                        UIApplication.SharedApplication.ShortcutItems.FirstOrDefault(si => si.Type.Equals(shortcutId));
 
-                if (shortcutItem == null)
-                    return;
+                    if (shortcutItem == null)
+                        return;
 
-                var updatedItems = UIApplication.SharedApplication.ShortcutItems.ToList();
-                updatedItems.Remove(shortcutItem);
-                UIApplication.SharedApplication.ShortcutItems = updatedItems.ToArray();
+                    var updatedItems = UIApplication.SharedApplication.ShortcutItems.ToList();
+                    updatedItems.Remove(shortcutItem);
+                    UIApplication.SharedApplication.ShortcutItems = updatedItems.ToArray();
+                });
             });
         }
 
@@ -111,7 +115,7 @@ namespace Plugin.AppShortcuts
 
             return metadata;
         }
-        
+
         private static readonly Func<string, IShortcutIcon> ResolveShortcutIconType = iconName =>
         {
             var isParseSuccessful = Enum.TryParse(iconName, out ShortcutIconType type);

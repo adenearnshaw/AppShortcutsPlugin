@@ -75,9 +75,9 @@ namespace AppShortcutsTests.Pages
             await Navigation.PopAsync();
         }
 
-        private void ClearShortcuts(object sender, EventArgs e)
+        private async void ClearShortcuts(object sender, EventArgs e)
         {
-            RemoveCurrentShortcuts();
+            await RemoveCurrentShortcuts();
         }
 
         private async Task RemoveCurrentShortcuts()
