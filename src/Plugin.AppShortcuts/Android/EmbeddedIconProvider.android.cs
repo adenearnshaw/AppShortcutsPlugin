@@ -7,13 +7,13 @@ namespace Plugin.AppShortcuts.Android
 {
     internal class EmbeddedIconProvider : IIconProvider
     {
-        public async Task<object> CreatePlatformIcon(IShortcutIcon shortcutIcon)
+        public Task<object> CreatePlatformIcon(IShortcutIcon shortcutIcon)
         {
             var iconTypeString = shortcutIcon.IconName.ToLower();
             var iconName = $"ic_plugin_sc_{iconTypeString}";
             var resourceId = (int)(typeof(Plugin.AppShortcuts.Resource.Drawable).GetField(iconName)?.GetValue(null) ?? 0);
             var icon = Icon.CreateWithResource(Application.Context, resourceId);
-            return icon;
+            return Task.FromResult<object>(icon);
         }
     }
 }

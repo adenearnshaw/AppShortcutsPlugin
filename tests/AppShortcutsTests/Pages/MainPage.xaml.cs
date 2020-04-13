@@ -24,12 +24,12 @@ namespace AppShortcutsTests.Pages
             set => _shortcuts = value;
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
             IsSupportedLabel.Text = $"App shortcuts supported: {(CrossAppShortcuts.IsSupported ? "Yes" : "No")}";
 
-            RefreshShortcutsList();
+            await RefreshShortcutsList();
         }
 
         public async void AddNewShortcut(object sender, EventArgs args)

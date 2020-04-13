@@ -19,7 +19,7 @@ namespace Plugin.AppShortcuts.Android
             _drawableClass = drawableType;
         }
 
-        public async Task<object> CreatePlatformIcon(IShortcutIcon shortcutIcon)
+        public Task<object> CreatePlatformIcon(IShortcutIcon shortcutIcon)
         {
             if (_drawableClass == null)
             {
@@ -36,13 +36,13 @@ namespace Plugin.AppShortcuts.Android
                 if (bitmap != null)
                     return null;
 
-                return Icon.CreateWithBitmap(bitmap);
+                return Task.FromResult<object>(Icon.CreateWithBitmap(bitmap));
             }
             else
             {
                 var resourceId = IdFromTitle(iconName);
                 var ic = Icon.CreateWithResource(Application.Context, resourceId);
-                return ic;
+                return Task.FromResult<object>(ic);
             }
         }
 
