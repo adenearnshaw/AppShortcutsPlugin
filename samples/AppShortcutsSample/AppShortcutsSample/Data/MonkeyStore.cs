@@ -25,13 +25,6 @@ namespace AppShortcutsSample.Data
 
         public List<Monkey> Monkeys => _monkeys;
 
-        public void UpdateMonkeyShortcutId(string monkeyId, string shortcutId)
-        {
-            var monkeyToUpdate = _monkeys.FirstOrDefault(m => m.Id.Equals(monkeyId));
-            monkeyToUpdate.ShortcutId = shortcutId;
-            SaveMonkeyData(_monkeys);
-        }
-
         private List<Monkey> GetMonkeys()
         {
             var monkeys = LoadMonkeyData();

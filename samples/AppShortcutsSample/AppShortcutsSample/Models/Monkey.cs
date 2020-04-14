@@ -11,8 +11,6 @@ namespace AppShortcutsSample.Models
         //URL for our monkey image!
         public string Image { get; set; }
 
-        public string ShortcutId { get; set; }
-
         [JsonIgnore]
         public string NameSort => Name[0].ToString();
 

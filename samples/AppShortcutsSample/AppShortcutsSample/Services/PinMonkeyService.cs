@@ -16,7 +16,6 @@ namespace AppShortcutsSample.Services
 
         private PinMonkeyService()
         {
-
         }
 
         public bool CanPinMonkeys => CrossAppShortcuts.IsSupported;
@@ -30,7 +29,7 @@ namespace AppShortcutsSample.Services
 
             var shorcuts = await CrossAppShortcuts.Current.GetShortcuts();
 
-            return shorcuts.Any(s => s.Label.Equals(monkey.Name));
+            return shorcuts.Any(s => s.Tag?.Equals(monkey.Id) ?? false);
         }
 
         public async Task PinMonkey(Monkey monkey)
@@ -38,26 +37,26 @@ namespace AppShortcutsSample.Services
             if (await MaxNumberOfPinsReached())
                 throw new MaxPinnedItemsException();
 
+            if (await IsMonkeyPinned(monkey.Id))
+                return;
+
             var shortcut = new Shortcut()
             {
                 Label = monkey.Name,
                 Description = monkey.Name,
                 Icon = new FavoriteIcon(),
-                Uri = $"{App.AppShortcutUriBase}{monkey.Id}"
+                Uri = $"{App.AppShortcutUriBase}{monkey.Id}",
+                Tag = monkey.Id
             };
 
             await CrossAppShortcuts.Current.AddShortcut(shortcut);
-            MonkeyStore.Instance.UpdateMonkeyShortcutId(monkey.Id, shortcut.ShortcutId);
         }
 
         public async Task UnpinMonkey(string monkeyId)
         {
-            var monkey = MonkeyStore.Instance.Monkeys.FirstOrDefault(m => m.Id.Equals(monkeyId));
+            var shortcut = (await CrossAppShortcuts.Current.GetShortcuts()).FirstOrDefault(s => s.Tag.Equals(monkeyId));
 
-            if (monkey == null)
-                return;
-
-            await CrossAppShortcuts.Current.RemoveShortcut(monkey.ShortcutId);
+            await CrossAppShortcuts.Current.RemoveShortcut(shortcut.ShortcutId);
         }
 
         private async Task<bool> MaxNumberOfPinsReached()
