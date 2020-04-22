@@ -11,6 +11,22 @@ For Android apps, the plugin needs some additional setup. In the `MainActivity.O
 
 `CrossAppShortcuts.Current.Init();`
 
+#### iOS specific setup
+For iOS apps, the plugin needs some additional setup. Add the next `PerformActionForShortcutItem` method in the `AppDelegate` class:  
+
+```csharp
+        /// <summary>
+        /// Perform action for shortcut item
+        /// </summary>
+        public override void PerformActionForShortcutItem(UIApplication application, UIApplicationShortcutItem shortcutItem, UIOperationHandler completionHandler)
+        {
+            var uri = Plugin.AppShortcuts.iOS.ArgumentsHelper.GetUriFromApplicationShortcutItem(shortcutItem);
+            if (uri != null)
+                Xamarin.Forms.Application.Current.SendOnAppLinkRequestReceived(uri);
+        }
+
+```
+
 
 ## Plugin API
 
