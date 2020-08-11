@@ -4,7 +4,7 @@ Dynamically add and remove shortcuts to your app's icon so the user can deep-lin
 
 
 ### Documentation  
-Get started by reading the [AppShortcuts Plugin documentation](https://adenearnshaw.github.io/AppShortcutsPlugin)  
+Get started by reading the [AppShortcuts Plugin documentation](https://adenearnshaw.github.io/AppShortcutsPlugin/)  
 
 ### Build  
 
